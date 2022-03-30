@@ -1,7 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 /**
  *
@@ -12,11 +16,20 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    
+    // Default red border
+    Border redBorder = BorderFactory.createMatteBorder(0, 6, 0, 0, Color.red);
+    // Disable border
+    Border disableBorder = BorderFactory.createEmptyBorder();
+    
+    
     public MainMenu() {
         initComponents();
         
-        //center this form
+        // Center this form
         this.setLocationRelativeTo(null);
+        
+        addActionToMenuLabels();
     }
 
     /**
@@ -30,10 +43,15 @@ public class MainMenu extends javax.swing.JFrame {
 
         mainPanel = new javax.swing.JPanel();
         optionsPanel = new javax.swing.JPanel();
-        homeButton = new javax.swing.JButton();
-        messagesButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
-        settingsButton = new javax.swing.JButton();
+        homeLabel = new javax.swing.JLabel();
+        messagesLabel = new javax.swing.JLabel();
+        profileLabel = new javax.swing.JLabel();
+        settingsLabel = new javax.swing.JLabel();
+        dashboardPanel = new javax.swing.JPanel();
+        logoPanel = new javax.swing.JPanel();
+        iconLogoLabel = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -45,66 +63,120 @@ public class MainMenu extends javax.swing.JFrame {
 
         optionsPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        homeButton.setBackground(new java.awt.Color(0, 0, 0));
-        homeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        homeButton.setForeground(new java.awt.Color(127, 125, 124));
-        homeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\home.png")); // NOI18N
-        homeButton.setText("Home");
-
-        messagesButton.setBackground(new java.awt.Color(0, 0, 0));
-        messagesButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        messagesButton.setForeground(new java.awt.Color(127, 125, 124));
-        messagesButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\email.png")); // NOI18N
-        messagesButton.setText("Messages");
-
         logOutButton.setBackground(new java.awt.Color(0, 0, 0));
-        logOutButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        logOutButton.setForeground(new java.awt.Color(127, 125, 124));
+        logOutButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        logOutButton.setForeground(new java.awt.Color(255, 255, 255));
         logOutButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\logout.png")); // NOI18N
         logOutButton.setText("Wyloguj się");
 
-        settingsButton.setBackground(new java.awt.Color(0, 0, 0));
-        settingsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        settingsButton.setForeground(new java.awt.Color(127, 125, 124));
-        settingsButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\settings.png")); // NOI18N
-        settingsButton.setText("Settings");
-        settingsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                settingsButtonActionPerformed(evt);
-            }
-        });
+        homeLabel.setBackground(new java.awt.Color(0, 0, 0));
+        homeLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        homeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        homeLabel.setText("Strona Główna");
+        homeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        messagesLabel.setBackground(new java.awt.Color(0, 0, 0));
+        messagesLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        messagesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        messagesLabel.setText("Wiadomości");
+        messagesLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        profileLabel.setBackground(new java.awt.Color(0, 0, 0));
+        profileLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        profileLabel.setForeground(new java.awt.Color(255, 255, 255));
+        profileLabel.setText("Profil");
+        profileLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        settingsLabel.setBackground(new java.awt.Color(0, 0, 0));
+        settingsLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        settingsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        settingsLabel.setText("Ustawienia");
+        settingsLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout optionsPanelLayout = new javax.swing.GroupLayout(optionsPanel);
         optionsPanel.setLayout(optionsPanelLayout);
         optionsPanelLayout.setHorizontalGroup(
             optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionsPanelLayout.createSequentialGroup()
+            .addGroup(optionsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(settingsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(messagesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, optionsPanelLayout.createSequentialGroup()
+                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(messagesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(profileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(optionsPanelLayout.createSequentialGroup()
                         .addComponent(logOutButton)
-                        .addGap(0, 133, Short.MAX_VALUE)))
+                        .addGap(0, 130, Short.MAX_VALUE))
+                    .addComponent(settingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         optionsPanelLayout.setVerticalGroup(
             optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionsPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(messagesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
-                .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(homeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(messagesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(profileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(settingsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
                 .addComponent(logOutButton)
                 .addContainerGap())
         );
 
         mainPanel.add(optionsPanel);
-        optionsPanel.setBounds(0, 0, 290, 708);
+        optionsPanel.setBounds(0, 140, 290, 580);
+
+        dashboardPanel.setBackground(new java.awt.Color(255, 204, 204));
+
+        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
+        dashboardPanel.setLayout(dashboardPanelLayout);
+        dashboardPanelLayout.setHorizontalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 990, Short.MAX_VALUE)
+        );
+        dashboardPanelLayout.setVerticalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(dashboardPanel);
+        dashboardPanel.setBounds(290, 0, 990, 720);
+
+        logoPanel.setBackground(new java.awt.Color(0, 0, 0));
+
+        iconLogoLabel.setBackground(new java.awt.Color(0, 0, 0));
+        iconLogoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\logo red.png")); // NOI18N
+        iconLogoLabel.setOpaque(true);
+
+        logoLabel.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 0, 0));
+        logoLabel.setText("tinder");
+
+        javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
+        logoPanel.setLayout(logoPanelLayout);
+        logoPanelLayout.setHorizontalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logoPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(iconLogoLabel)
+                .addGap(40, 40, 40)
+                .addComponent(logoLabel)
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+        logoPanelLayout.setVerticalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logoPanelLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(iconLogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoLabel))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(logoPanel);
+        logoPanel.setBounds(0, 0, 290, 144);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,10 +192,44 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_settingsButtonActionPerformed
+    public void addActionToMenuLabels(){
+        Component[] components = optionsPanel.getComponents();
+        
+        for(Component component : components){
+            if(component instanceof JLabel){
+                JLabel label = (JLabel) component;
+                
+                label.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        
+                    }
 
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        label.setBorder(redBorder);
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        label.setBorder(disableBorder);
+                    }
+                });
+            }
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -160,11 +266,16 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton homeButton;
+    private javax.swing.JPanel dashboardPanel;
+    private javax.swing.JLabel homeLabel;
+    private javax.swing.JLabel iconLogoLabel;
     private javax.swing.JButton logOutButton;
+    private javax.swing.JLabel logoLabel;
+    private javax.swing.JPanel logoPanel;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JButton messagesButton;
+    private javax.swing.JLabel messagesLabel;
     private javax.swing.JPanel optionsPanel;
-    private javax.swing.JButton settingsButton;
+    private javax.swing.JLabel profileLabel;
+    private javax.swing.JLabel settingsLabel;
     // End of variables declaration//GEN-END:variables
 }
