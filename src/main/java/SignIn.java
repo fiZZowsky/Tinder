@@ -1,3 +1,7 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -39,7 +43,10 @@ public class SignIn extends javax.swing.JFrame {
         logInButton = new javax.swing.JButton();
         changeToRegisterButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        errorPanel = new javax.swing.JPanel();
+        errorLabel = new javax.swing.JLabel();
+        errorTxtLabel = new javax.swing.JLabel();
+        hideErrorMessage = new javax.swing.JButton();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,39 +83,78 @@ public class SignIn extends javax.swing.JFrame {
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
         logInButton.setText("Zaloguj się");
         logInButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInButtonActionPerformed(evt);
+            }
+        });
 
         changeToRegisterButton.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         changeToRegisterButton.setText("Nie posiadam konta");
         changeToRegisterButton.setBorder(null);
+        changeToRegisterButton.setContentAreaFilled(false);
         changeToRegisterButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         closeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\X.png")); // NOI18N
         closeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
+        errorPanel.setBackground(new java.awt.Color(220, 220, 220));
+        errorPanel.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        errorLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\error.png")); // NOI18N
+
+        errorTxtLabel.setForeground(new java.awt.Color(255, 0, 0));
+        errorTxtLabel.setText("Błędne dane logowania!");
+
+        hideErrorMessage.setForeground(new java.awt.Color(255, 255, 255));
+        hideErrorMessage.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\arrow_1.png")); // NOI18N
+        hideErrorMessage.setBorder(null);
+        hideErrorMessage.setBorderPainted(false);
+        hideErrorMessage.setContentAreaFilled(false);
+        hideErrorMessage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hideErrorMessage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hideErrorMessageMouseClicked(evt);
+            }
+        });
+        hideErrorMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hideErrorMessageActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout errorPanelLayout = new javax.swing.GroupLayout(errorPanel);
+        errorPanel.setLayout(errorPanelLayout);
+        errorPanelLayout.setHorizontalGroup(
+            errorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(errorLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorTxtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hideErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 74, Short.MAX_VALUE)
+        errorPanelLayout.setVerticalGroup(
+            errorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorPanelLayout.createSequentialGroup()
+                .addGroup(errorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(errorPanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(errorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(errorTxtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(errorPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(hideErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
         middlePanel.setLayout(middlePanelLayout);
         middlePanelLayout.setHorizontalGroup(
             middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
-                .addContainerGap(218, Short.MAX_VALUE)
-                .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
-                        .addComponent(headerLabel)
-                        .addGap(203, 203, 203))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
-                        .addComponent(closeButton)
-                        .addContainerGap())))
             .addGroup(middlePanelLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -124,10 +170,19 @@ public class SignIn extends javax.swing.JFrame {
                         .addGap(28, 28, 28))
                     .addGroup(middlePanelLayout.createSequentialGroup()
                         .addComponent(changeToRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                        .addGap(290, 290, 290)
                         .addComponent(showPasswordCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(errorPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
+                        .addComponent(headerLabel)
+                        .addGap(203, 203, 203))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
+                        .addComponent(closeButton)
+                        .addContainerGap())))
         );
         middlePanelLayout.setVerticalGroup(
             middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,11 +203,11 @@ public class SignIn extends javax.swing.JFrame {
                 .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(showPasswordCheckBox)
                     .addComponent(changeToRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addGap(56, 56, 56)
                 .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addComponent(errorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         mainPanel.add(middlePanel);
@@ -180,6 +235,30 @@ public class SignIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Timer to hide error panel
+    Timer timerUp = new Timer(10, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(errorPanel.getHeight() != 0){
+                errorPanel.setBounds(errorPanel.getX(), errorPanel.getY(), errorPanel.getWidth(), errorPanel.getHeight() - 5);
+            } else{
+                timerUp.stop();
+            }
+        }
+    });
+    
+    // Timer to show error panel
+    Timer timerDown = new Timer(10, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(errorPanel.getHeight() != 50){
+                errorPanel.setBounds(errorPanel.getX(), errorPanel.getY(), errorPanel.getWidth(), errorPanel.getHeight() + 5);
+            } else{
+                timerDown.stop();
+            }
+        }
+    });
+    
     private void showPasswordCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordCheckBoxActionPerformed
         // show and hide password chars
         if(showPasswordCheckBox.isSelected()){
@@ -188,6 +267,21 @@ public class SignIn extends javax.swing.JFrame {
             passwordField.setEchoChar('*');
         }
     }//GEN-LAST:event_showPasswordCheckBoxActionPerformed
+
+    private void hideErrorMessageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideErrorMessageMouseClicked
+        // hide error panel
+        timerUp.start();
+        
+    }//GEN-LAST:event_hideErrorMessageMouseClicked
+
+    private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
+        // show error message
+        timerDown.start();
+    }//GEN-LAST:event_logInButtonActionPerformed
+
+    private void hideErrorMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideErrorMessageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hideErrorMessageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,8 +323,11 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JButton changeToRegisterButton;
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel errorLabel;
+    private javax.swing.JPanel errorPanel;
+    private javax.swing.JLabel errorTxtLabel;
     private javax.swing.JLabel headerLabel;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton hideErrorMessage;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton logInButton;
     private javax.swing.JPanel mainPanel;
