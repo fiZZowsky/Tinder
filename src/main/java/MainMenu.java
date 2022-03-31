@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
@@ -22,12 +23,30 @@ public class MainMenu extends javax.swing.JFrame {
     // Disable border
     Border disableBorder = BorderFactory.createEmptyBorder();
     
+    // Create an array of jlabels
+    JLabel[] menuLabels = new JLabel[4];
+    
+    // Create an array of JPanels
+    JPanel[] panels = new JPanel[4];
+    
     
     public MainMenu() {
         initComponents();
         
         // Center this form
         this.setLocationRelativeTo(null);
+        
+        // Populate the menuLabels array
+        menuLabels[0] = homeLabel;
+        menuLabels[1] = messagesLabel;
+        menuLabels[2] = profileLabel;
+        menuLabels[3] = settingsLabel;
+        
+        // Populate the panels array
+        panels[0] = dashboardPanel;
+        panels[1] = messagesPanel;
+        panels[2] = profilePanel;
+        panels[3] = settingsPanel;
         
         addActionToMenuLabels();
     }
@@ -41,57 +60,74 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
+        panelContainer = new javax.swing.JPanel();
         optionsPanel = new javax.swing.JPanel();
         logOutButton = new javax.swing.JButton();
         homeLabel = new javax.swing.JLabel();
         messagesLabel = new javax.swing.JLabel();
         profileLabel = new javax.swing.JLabel();
         settingsLabel = new javax.swing.JLabel();
-        dashboardPanel = new javax.swing.JPanel();
         logoPanel = new javax.swing.JPanel();
         iconLogoLabel = new javax.swing.JLabel();
         logoLabel = new javax.swing.JLabel();
+        dashboardPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        messagesPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        profilePanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        settingsPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        mainPanel.setAlignmentX(0.0F);
-        mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        mainPanel.setLayout(null);
+        panelContainer.setAlignmentX(0.0F);
+        panelContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelContainer.setLayout(null);
 
         optionsPanel.setBackground(new java.awt.Color(0, 0, 0));
+        optionsPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         logOutButton.setBackground(new java.awt.Color(0, 0, 0));
         logOutButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         logOutButton.setForeground(new java.awt.Color(255, 255, 255));
         logOutButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\logout.png")); // NOI18N
         logOutButton.setText("Wyloguj się");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
 
         homeLabel.setBackground(new java.awt.Color(0, 0, 0));
         homeLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         homeLabel.setForeground(new java.awt.Color(255, 255, 255));
         homeLabel.setText("Strona Główna");
         homeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        homeLabel.setOpaque(true);
 
         messagesLabel.setBackground(new java.awt.Color(0, 0, 0));
         messagesLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         messagesLabel.setForeground(new java.awt.Color(255, 255, 255));
         messagesLabel.setText("Wiadomości");
         messagesLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        messagesLabel.setOpaque(true);
 
         profileLabel.setBackground(new java.awt.Color(0, 0, 0));
         profileLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         profileLabel.setForeground(new java.awt.Color(255, 255, 255));
         profileLabel.setText("Profil");
         profileLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        profileLabel.setOpaque(true);
 
         settingsLabel.setBackground(new java.awt.Color(0, 0, 0));
         settingsLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         settingsLabel.setForeground(new java.awt.Color(255, 255, 255));
         settingsLabel.setText("Ustawienia");
         settingsLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        settingsLabel.setOpaque(true);
 
         javax.swing.GroupLayout optionsPanelLayout = new javax.swing.GroupLayout(optionsPanel);
         optionsPanel.setLayout(optionsPanelLayout);
@@ -125,24 +161,8 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mainPanel.add(optionsPanel);
+        panelContainer.add(optionsPanel);
         optionsPanel.setBounds(0, 140, 290, 580);
-
-        dashboardPanel.setBackground(new java.awt.Color(255, 204, 204));
-
-        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
-        dashboardPanel.setLayout(dashboardPanelLayout);
-        dashboardPanelLayout.setHorizontalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
-        );
-        dashboardPanelLayout.setVerticalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(dashboardPanel);
-        dashboardPanel.setBounds(290, 0, 990, 720);
 
         logoPanel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -175,23 +195,147 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        mainPanel.add(logoPanel);
+        panelContainer.add(logoPanel);
         logoPanel.setBounds(0, 0, 290, 144);
+
+        dashboardPanel.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setText("Strona główna");
+
+        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
+        dashboardPanel.setLayout(dashboardPanelLayout);
+        dashboardPanelLayout.setHorizontalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dashboardPanelLayout.createSequentialGroup()
+                .addContainerGap(379, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
+        );
+        dashboardPanelLayout.setVerticalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dashboardPanelLayout.createSequentialGroup()
+                .addContainerGap(292, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(262, 262, 262))
+        );
+
+        panelContainer.add(dashboardPanel);
+        dashboardPanel.setBounds(290, 0, 990, 720);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel2.setText("Message Panel");
+
+        javax.swing.GroupLayout messagesPanelLayout = new javax.swing.GroupLayout(messagesPanel);
+        messagesPanel.setLayout(messagesPanelLayout);
+        messagesPanelLayout.setHorizontalGroup(
+            messagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, messagesPanelLayout.createSequentialGroup()
+                .addContainerGap(339, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(196, 196, 196))
+        );
+        messagesPanelLayout.setVerticalGroup(
+            messagesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(messagesPanelLayout.createSequentialGroup()
+                .addGap(298, 298, 298)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(315, Short.MAX_VALUE))
+        );
+
+        panelContainer.add(messagesPanel);
+        messagesPanel.setBounds(290, 0, 990, 720);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel4.setText("Profile Panel");
+
+        javax.swing.GroupLayout profilePanelLayout = new javax.swing.GroupLayout(profilePanel);
+        profilePanel.setLayout(profilePanelLayout);
+        profilePanelLayout.setHorizontalGroup(
+            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profilePanelLayout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(306, Short.MAX_VALUE))
+        );
+        profilePanelLayout.setVerticalGroup(
+            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profilePanelLayout.createSequentialGroup()
+                .addGap(314, 314, 314)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(253, Short.MAX_VALUE))
+        );
+
+        panelContainer.add(profilePanel);
+        profilePanel.setBounds(290, 0, 990, 720);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel3.setText("Settings Panel");
+
+        javax.swing.GroupLayout settingsPanelLayout = new javax.swing.GroupLayout(settingsPanel);
+        settingsPanel.setLayout(settingsPanelLayout);
+        settingsPanelLayout.setHorizontalGroup(
+            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
+                .addContainerGap(262, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179))
+        );
+        settingsPanelLayout.setVerticalGroup(
+            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingsPanelLayout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(235, Short.MAX_VALUE))
+        );
+
+        panelContainer.add(settingsPanel);
+        settingsPanel.setBounds(290, 0, 990, 720);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+        // Back to IntroMenu
+        this.dispose();
+        IntroMenu introMenu = new IntroMenu();
+        introMenu.setVisible(true);
+    }//GEN-LAST:event_logOutButtonActionPerformed
+    
+    public void setLabelBackground(JLabel label){
+        for(JLabel menuItem : menuLabels){
+            // Change the JLabel background to 
+            menuItem.setBackground(Color.black);
+            // Change the JLabel foreground to 
+            menuItem.setForeground(Color.white);
+        }
+        
+        label.setBackground(Color.white);
+        label.setForeground(Color.gray);
+    }
+    
+    // Create a function to show selected panel
+    public void showPanel(JPanel panel){
+        // Hide panels
+        for(JPanel pn1 : panels){
+            pn1.setVisible(false);
+        }
+        
+        // Show only this panel
+        panel.setVisible(true);
+    }
+    
     public void addActionToMenuLabels(){
         Component[] components = optionsPanel.getComponents();
         
@@ -202,7 +346,23 @@ public class MainMenu extends javax.swing.JFrame {
                 label.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
+                        setLabelBackground(label);
                         
+                        // Display the selected panel
+                        switch(label.getText().trim()){
+                            case "Strona Główna":
+                                showPanel(dashboardPanel);
+                                break;
+                            case "Wiadomości":
+                                showPanel(messagesPanel);
+                                break;
+                            case "Profil":
+                                showPanel(profilePanel);
+                                break;
+                            case "Ustawienia":
+                                showPanel(settingsPanel);
+                                break;
+                        }
                     }
 
                     @Override
@@ -212,7 +372,7 @@ public class MainMenu extends javax.swing.JFrame {
 
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        
+
                     }
 
                     @Override
@@ -269,13 +429,20 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel dashboardPanel;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JLabel iconLogoLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton logOutButton;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPanel logoPanel;
-    private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel messagesLabel;
+    private javax.swing.JPanel messagesPanel;
     private javax.swing.JPanel optionsPanel;
+    private javax.swing.JPanel panelContainer;
     private javax.swing.JLabel profileLabel;
+    private javax.swing.JPanel profilePanel;
     private javax.swing.JLabel settingsLabel;
+    private javax.swing.JPanel settingsPanel;
     // End of variables declaration//GEN-END:variables
 }

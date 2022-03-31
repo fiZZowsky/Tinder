@@ -103,10 +103,16 @@ public class IntroMenu extends javax.swing.JFrame {
 
     private void SignInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInButtonActionPerformed
         // go to login screen
+        SignIn loginScreen = new SignIn();
+        this.dispose();
+        loginScreen.setVisible(true);
     }//GEN-LAST:event_SignInButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
         // go to register screen
+        SignUp registerScreen = new SignUp();
+        this.dispose();
+        registerScreen.setVisible(true);
     }//GEN-LAST:event_SignUpButtonActionPerformed
 
     /**

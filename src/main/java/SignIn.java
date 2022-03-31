@@ -37,7 +37,7 @@ public class SignIn extends javax.swing.JFrame {
         emailLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         headerLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
         showPasswordCheckBox = new javax.swing.JCheckBox();
         logInButton = new javax.swing.JButton();
@@ -66,7 +66,7 @@ public class SignIn extends javax.swing.JFrame {
         headerLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         headerLabel.setText("ROZPOCZNIJ");
 
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        usernameField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         passwordField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
@@ -97,6 +97,11 @@ public class SignIn extends javax.swing.JFrame {
 
         closeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\X.png")); // NOI18N
         closeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
 
         errorPanel.setBackground(new java.awt.Color(220, 220, 220));
         errorPanel.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -107,7 +112,7 @@ public class SignIn extends javax.swing.JFrame {
         errorTxtLabel.setText("Błędne dane logowania!");
 
         hideErrorMessage.setForeground(new java.awt.Color(255, 255, 255));
-        hideErrorMessage.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\arrow_1.png")); // NOI18N
+        hideErrorMessage.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\arrow.png")); // NOI18N
         hideErrorMessage.setBorder(null);
         hideErrorMessage.setBorderPainted(false);
         hideErrorMessage.setContentAreaFilled(false);
@@ -165,7 +170,7 @@ public class SignIn extends javax.swing.JFrame {
                             .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(usernameField)
                             .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
                         .addGap(28, 28, 28))
                     .addGroup(middlePanelLayout.createSequentialGroup()
@@ -194,7 +199,7 @@ public class SignIn extends javax.swing.JFrame {
                 .addGap(75, 75, 75)
                 .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -275,6 +280,21 @@ public class SignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_hideErrorMessageMouseClicked
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
+        String username = usernameField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        
+        if(username.equals("")){
+            errorTxtLabel.setText("Enter Your Username First!");
+        }else if(password.equals("")){
+            errorTxtLabel.setText("Enter Your Password!");
+        }else if(username.equals("admin") && (password.equals("admin"))){
+            this.dispose();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
+        }else{
+            errorTxtLabel.setText("Incorrect Username or Password!");
+        }
+        
         // show error message
         timerDown.start();
     }//GEN-LAST:event_logInButtonActionPerformed
@@ -282,6 +302,13 @@ public class SignIn extends javax.swing.JFrame {
     private void hideErrorMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideErrorMessageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hideErrorMessageActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        // Back to IntroMenu
+        this.dispose();
+        IntroMenu introMenu = new IntroMenu();
+        introMenu.setVisible(true);
+    }//GEN-LAST:event_closeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,12 +355,12 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JLabel errorTxtLabel;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JButton hideErrorMessage;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton logInButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel middlePanel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JCheckBox showPasswordCheckBox;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

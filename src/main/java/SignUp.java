@@ -109,6 +109,11 @@ public class SignUp extends javax.swing.JFrame {
         closeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\X.png")); // NOI18N
         closeButton.setBorder(null);
         closeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
         middlePanel.setLayout(middlePanelLayout);
@@ -236,6 +241,13 @@ public class SignUp extends javax.swing.JFrame {
             passwordField.setEchoChar('*');
         }
     }//GEN-LAST:event_passwordVisibleBoxActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        // Back to IntroMenu
+        this.dispose();
+        IntroMenu introMenu = new IntroMenu();
+        introMenu.setVisible(true);
+    }//GEN-LAST:event_closeButtonActionPerformed
 
     /**
      * @param args the command line arguments
