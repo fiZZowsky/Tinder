@@ -50,7 +50,6 @@ public class SignIn extends javax.swing.JFrame {
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
         mainPanel.setLayout(null);
@@ -94,6 +93,11 @@ public class SignIn extends javax.swing.JFrame {
         changeToRegisterButton.setBorder(null);
         changeToRegisterButton.setContentAreaFilled(false);
         changeToRegisterButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changeToRegisterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeToRegisterButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\X.png")); // NOI18N
         closeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -309,6 +313,13 @@ public class SignIn extends javax.swing.JFrame {
         IntroMenu introMenu = new IntroMenu();
         introMenu.setVisible(true);
     }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void changeToRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeToRegisterButtonActionPerformed
+        // Opening register screen
+        this.dispose();
+        SignUp registerScreen = new SignUp();
+        registerScreen.setVisible(true);
+    }//GEN-LAST:event_changeToRegisterButtonActionPerformed
 
     /**
      * @param args the command line arguments

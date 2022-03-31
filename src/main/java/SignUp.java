@@ -1,3 +1,8 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -48,6 +53,10 @@ public class SignUp extends javax.swing.JFrame {
         passwordVisibleBox = new javax.swing.JCheckBox();
         registerButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
+        errorPanel = new javax.swing.JPanel();
+        errorLabel = new javax.swing.JLabel();
+        errorTxtLabel = new javax.swing.JLabel();
+        hideErrorMessage = new javax.swing.JButton();
         logoLabel = new javax.swing.JLabel();
         logoIconLabel = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
@@ -105,6 +114,11 @@ public class SignUp extends javax.swing.JFrame {
         registerButton.setForeground(new java.awt.Color(255, 255, 255));
         registerButton.setText("Utwórz konto");
         registerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\X.png")); // NOI18N
         closeButton.setBorder(null);
@@ -115,17 +129,64 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        errorPanel.setBackground(new java.awt.Color(220, 220, 220));
+        errorPanel.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        errorLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\error.png")); // NOI18N
+
+        errorTxtLabel.setForeground(new java.awt.Color(255, 0, 0));
+        errorTxtLabel.setText("Błędne dane logowania!");
+
+        hideErrorMessage.setForeground(new java.awt.Color(255, 255, 255));
+        hideErrorMessage.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\arrow.png")); // NOI18N
+        hideErrorMessage.setBorder(null);
+        hideErrorMessage.setBorderPainted(false);
+        hideErrorMessage.setContentAreaFilled(false);
+        hideErrorMessage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hideErrorMessage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hideErrorMessageMouseClicked(evt);
+            }
+        });
+        hideErrorMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hideErrorMessageActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout errorPanelLayout = new javax.swing.GroupLayout(errorPanel);
+        errorPanel.setLayout(errorPanelLayout);
+        errorPanelLayout.setHorizontalGroup(
+            errorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(errorLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorTxtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addComponent(hideErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        errorPanelLayout.setVerticalGroup(
+            errorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(errorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(hideErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorTxtLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
         middlePanel.setLayout(middlePanelLayout);
         middlePanelLayout.setHorizontalGroup(
             middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(middlePanelLayout.createSequentialGroup()
                 .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordVisibleBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(middlePanelLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(middlePanelLayout.createSequentialGroup()
                                 .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -144,16 +205,21 @@ public class SignUp extends javax.swing.JFrame {
                                     .addComponent(ageSpinner)
                                     .addComponent(emailField)
                                     .addComponent(passwordField)
-                                    .addComponent(phoneNumberField))))))
-                .addGap(89, 89, 89))
+                                    .addComponent(phoneNumberField)))
+                            .addComponent(errorPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)))
+                    .addGroup(middlePanelLayout.createSequentialGroup()
+                        .addGap(247, 247, 247)
+                        .addComponent(headerLabel)))
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(closeButton)
-                .addGap(62, 62, 62))
-            .addGroup(middlePanelLayout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(headerLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
+                        .addComponent(passwordVisibleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, middlePanelLayout.createSequentialGroup()
+                        .addComponent(closeButton)
+                        .addContainerGap())))
         );
         middlePanelLayout.setVerticalGroup(
             middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,9 +258,11 @@ public class SignUp extends javax.swing.JFrame {
                     .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordVisibleBox)
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
 
         mainPanel.add(middlePanel);
@@ -232,7 +300,31 @@ public class SignUp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    // Timer to hide error panel
+    Timer timerUp = new Timer(10, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(errorPanel.getHeight() != 0){
+                errorPanel.setBounds(errorPanel.getX(), errorPanel.getY(), errorPanel.getWidth(), errorPanel.getHeight() - 5);
+            } else{
+                timerUp.stop();
+            }
+        }
+    });
+    
+    // Timer to show error panel
+    Timer timerDown = new Timer(10, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(errorPanel.getHeight() != 50){
+                errorPanel.setBounds(errorPanel.getX(), errorPanel.getY(), errorPanel.getWidth(), errorPanel.getHeight() + 5);
+            } else{
+                timerDown.stop();
+            }
+        }
+    });
+    
     private void passwordVisibleBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordVisibleBoxActionPerformed
         // show and hide password chars
         if(passwordVisibleBox.isSelected()){
@@ -249,6 +341,50 @@ public class SignUp extends javax.swing.JFrame {
         introMenu.setVisible(true);
     }//GEN-LAST:event_closeButtonActionPerformed
 
+    private void hideErrorMessageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideErrorMessageMouseClicked
+        // hide error panel
+        timerUp.start();
+
+    }//GEN-LAST:event_hideErrorMessageMouseClicked
+
+    private void hideErrorMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideErrorMessageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hideErrorMessageActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        String name = nameField.getText();
+        String surname = surnameField.getText();
+        String country = String.valueOf(countryBox.getSelectedItem());
+        int age = (Integer) ageSpinner.getValue();
+        String email = emailField.getText();
+        String number = phoneNumberField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        
+        if(name.equals("")){
+            errorTxtLabel.setText("Enter Your Name First!");
+        }else if(surname.equals("")){
+            errorTxtLabel.setText("Enter Your Surname!");
+        }else if(country == "<none>"){
+            errorTxtLabel.setText("Chooce Your Country!");
+        }else if((age <= 0) || (age > 150)){
+            errorTxtLabel.setText("Enter Your Correct Age!");
+        }else if(email.equals("")){
+            errorTxtLabel.setText("Enter Your email!");
+        }else if(number.equals("")){
+            errorTxtLabel.setText("Enter Your Phone Number!");
+        }else if(password.equals("")){
+            errorTxtLabel.setText("Enter Your Password!");
+        }else{
+            this.dispose();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
+        }
+        
+        // show error message
+        timerDown.start();
+    }//GEN-LAST:event_registerButtonActionPerformed
+     
+    
     /**
      * @param args the command line arguments
      */
@@ -293,7 +429,11 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel countryLabel;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel errorLabel;
+    private javax.swing.JPanel errorPanel;
+    private javax.swing.JLabel errorTxtLabel;
     private javax.swing.JLabel headerLabel;
+    private javax.swing.JButton hideErrorMessage;
     private javax.swing.JLabel logoIconLabel;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPanel mainPanel;
