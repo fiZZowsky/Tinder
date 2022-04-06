@@ -23,6 +23,7 @@ public class MainMenu extends javax.swing.JFrame {
     // Disable border
     Border disableBorder = BorderFactory.createEmptyBorder();
     
+    Color dark_grey = new Color(46, 49, 49);
     // Create an array of jlabels
     JLabel[] menuLabels = new JLabel[4];
     
@@ -340,8 +341,7 @@ public class MainMenu extends javax.swing.JFrame {
             menuItem.setForeground(Color.white);
         }
         
-        label.setBackground(Color.white);
-        label.setForeground(Color.gray);
+        label.setBackground(dark_grey);
     }
     
     // Create a function to show selected panel
