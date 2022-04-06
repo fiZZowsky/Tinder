@@ -29,7 +29,6 @@ public class MainMenu extends javax.swing.JFrame {
     // Create an array of JPanels
     JPanel[] panels = new JPanel[4];
     
-    
     public MainMenu() {
         initComponents();
         
@@ -104,30 +103,49 @@ public class MainMenu extends javax.swing.JFrame {
         homeLabel.setBackground(new java.awt.Color(0, 0, 0));
         homeLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         homeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        homeLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\home.png")); // NOI18N
         homeLabel.setText("Strona Główna");
+        homeLabel.setToolTipText("");
         homeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        homeLabel.setDisabledIcon(null);
+        homeLabel.setMaximumSize(new java.awt.Dimension(102, 40));
+        homeLabel.setMinimumSize(new java.awt.Dimension(40, 40));
+        homeLabel.setName(""); // NOI18N
         homeLabel.setOpaque(true);
+        homeLabel.setPreferredSize(new java.awt.Dimension(102, 40));
 
         messagesLabel.setBackground(new java.awt.Color(0, 0, 0));
         messagesLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         messagesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        messagesLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\messages.png")); // NOI18N
         messagesLabel.setText("Wiadomości");
         messagesLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        messagesLabel.setMaximumSize(new java.awt.Dimension(102, 40));
+        messagesLabel.setMinimumSize(new java.awt.Dimension(60, 40));
         messagesLabel.setOpaque(true);
+        messagesLabel.setPreferredSize(new java.awt.Dimension(102, 40));
 
         profileLabel.setBackground(new java.awt.Color(0, 0, 0));
         profileLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         profileLabel.setForeground(new java.awt.Color(255, 255, 255));
+        profileLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\profile.png")); // NOI18N
         profileLabel.setText("Profil");
         profileLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        profileLabel.setMaximumSize(new java.awt.Dimension(102, 40));
+        profileLabel.setMinimumSize(new java.awt.Dimension(60, 40));
         profileLabel.setOpaque(true);
+        profileLabel.setPreferredSize(new java.awt.Dimension(102, 40));
 
         settingsLabel.setBackground(new java.awt.Color(0, 0, 0));
         settingsLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         settingsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        settingsLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\settings.png")); // NOI18N
         settingsLabel.setText("Ustawienia");
         settingsLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        settingsLabel.setMaximumSize(new java.awt.Dimension(102, 40));
+        settingsLabel.setMinimumSize(new java.awt.Dimension(60, 40));
         settingsLabel.setOpaque(true);
+        settingsLabel.setPreferredSize(new java.awt.Dimension(102, 40));
 
         javax.swing.GroupLayout optionsPanelLayout = new javax.swing.GroupLayout(optionsPanel);
         optionsPanel.setLayout(optionsPanelLayout);
@@ -179,11 +197,11 @@ public class MainMenu extends javax.swing.JFrame {
         logoPanelLayout.setHorizontalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(logoPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(12, 12, 12)
                 .addComponent(iconLogoLabel)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoLabel)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         logoPanelLayout.setVerticalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,6 +324,7 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         // Back to IntroMenu
         this.dispose();
@@ -336,6 +355,46 @@ public class MainMenu extends javax.swing.JFrame {
         panel.setVisible(true);
     }
     
+    public void setDefaultOptions(){
+        logoPanel.setBounds(logoPanel.getX(), logoPanel.getY(), logoPanel.getWidth() + 230, logoPanel.getHeight());
+        logoLabel.setVisible(true);
+        optionsPanel.setBounds(optionsPanel.getX(), optionsPanel.getY(), optionsPanel.getWidth() + 230, optionsPanel.getHeight());
+        
+        homeLabel.setBounds(homeLabel.getX(), homeLabel.getY(), homeLabel.getWidth() + 42, homeLabel.getHeight());
+        homeLabel.setText("Strona Główna");
+        
+        messagesLabel.setBounds(messagesLabel.getX(), messagesLabel.getY(), messagesLabel.getWidth() + 42, messagesLabel.getHeight());
+        messagesLabel.setText("Wiadomości");
+        
+        profileLabel.setBounds(profileLabel.getX(), profileLabel.getY(), profileLabel.getWidth() + 42, profileLabel.getHeight());
+        profileLabel.setText("Profil");
+        
+        settingsLabel.setBounds(settingsLabel.getX(), settingsLabel.getY(), settingsLabel.getWidth() + 42, settingsLabel.getHeight());
+        settingsLabel.setText("Ustawienia");
+    }
+    
+    public void setMinimalOtions(){
+        logoPanel.setBounds(logoPanel.getX(), logoPanel.getY(), logoPanel.getWidth() - 230, logoPanel.getHeight());
+        logoLabel.setVisible(false);
+        optionsPanel.setBounds(optionsPanel.getX(), optionsPanel.getY(), optionsPanel.getWidth() - 230, optionsPanel.getHeight());
+        
+        // Set home label
+        homeLabel.setBounds(homeLabel.getX(), homeLabel.getY(), homeLabel.getWidth() - 42, homeLabel.getHeight());
+        homeLabel.setText("");
+        
+        // Set profile label
+        profileLabel.setBounds(profileLabel.getX(), profileLabel.getY(), profileLabel.getWidth() - 42, profileLabel.getHeight());
+        profileLabel.setText("");
+        
+        // Set messages label
+        messagesLabel.setBounds(messagesLabel.getX(), messagesLabel.getY(), messagesLabel.getWidth() - 42, messagesLabel.getHeight());
+        messagesLabel.setText("");
+        
+        // Set settings label
+        settingsLabel.setBounds(settingsLabel.getX(), settingsLabel.getY(), settingsLabel.getWidth() - 42, settingsLabel.getHeight());
+        settingsLabel.setText("");
+    }
+    
     public void addActionToMenuLabels(){
         Component[] components = optionsPanel.getComponents();
         
@@ -355,6 +414,7 @@ public class MainMenu extends javax.swing.JFrame {
                                 break;
                             case "Wiadomości":
                                 showPanel(messagesPanel);
+                                setMinimalOtions();
                                 break;
                             case "Profil":
                                 showPanel(profilePanel);
@@ -362,6 +422,8 @@ public class MainMenu extends javax.swing.JFrame {
                             case "Ustawienia":
                                 showPanel(settingsPanel);
                                 break;
+                            default:
+                                setDefaultOptions();
                         }
                     }
 
