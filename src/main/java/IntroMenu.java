@@ -1,3 +1,5 @@
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,7 +16,6 @@ public class IntroMenu extends javax.swing.JFrame {
      */
     public IntroMenu() {
         initComponents();
-        
         //center this form
         this.setLocationRelativeTo(null);
     }
@@ -53,8 +54,6 @@ public class IntroMenu extends javax.swing.JFrame {
         });
         mainPanel.add(SignInButton);
         SignInButton.setBounds(1100, 10, 160, 40);
-
-        logoIconLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\logo.png")); // NOI18N
         mainPanel.add(logoIconLabel);
         logoIconLabel.setBounds(10, 10, 40, 40);
 
@@ -82,8 +81,6 @@ public class IntroMenu extends javax.swing.JFrame {
         middleTxtLabel.setText("Przesuń w prawo");
         mainPanel.add(middleTxtLabel);
         middleTxtLabel.setBounds(440, 240, 400, 60);
-
-        backgroundLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\background.jpeg")); // NOI18N
         mainPanel.add(backgroundLabel);
         backgroundLabel.setBounds(0, 0, 1280, 720);
 
@@ -142,7 +139,7 @@ public class IntroMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+          
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

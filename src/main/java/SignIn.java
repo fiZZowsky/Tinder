@@ -1,3 +1,10 @@
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import static firebase.Firebaseinit.initFirebase;
+import firebase.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -11,14 +18,15 @@ import javax.swing.Timer;
  *
  * @author fiZZy
  */
-public class SignIn extends javax.swing.JFrame {
 
+public class SignIn extends javax.swing.JFrame {
+private DatabaseReference mDatabase;
     /**
      * Creates new form SignIn
      */
     public SignIn() {
         initComponents();
-        
+        initFirebase();
         //center this form
         this.setLocationRelativeTo(null);
     }
@@ -282,21 +290,22 @@ public class SignIn extends javax.swing.JFrame {
         timerUp.start();
         
     }//GEN-LAST:event_hideErrorMessageMouseClicked
-
+private void closeWindow(){
+            this.dispose();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
+}
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
-        
         if(username.equals("")){
             errorTxtLabel.setText("Enter Your Username First!");
         }else if(password.equals("")){
             errorTxtLabel.setText("Enter Your Password!");
-        }else if(username.equals("admin") && (password.equals("admin"))){
-            this.dispose();
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.setVisible(true);
+       }else if(username.equals("admin") && (password.equals("admin"))){
+           closeWindow();
         }else{
-            errorTxtLabel.setText("Incorrect Username or Password!");
+            readData(username, password);   
         }
         
         // show error message
@@ -374,4 +383,24 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JCheckBox showPasswordCheckBox;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
+    private void readData(String username, String password) {
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dS : dataSnapshot.getChildren() ){
+                User user = dS.getValue(User.class);
+                if(user.getEmail().equals(username)){
+                  if(user.getPassword().equals(password)){
+                    closeWindow();
+                  }
+                }
+              
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 }

@@ -1,4 +1,13 @@
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DatabaseReference.CompletionListener;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import static firebase.Firebaseinit.generateUUID;
+import static firebase.Firebaseinit.initFirebase;
+import firebase.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -13,13 +22,14 @@ import javax.swing.Timer;
  * @author fiZZy
  */
 public class SignUp extends javax.swing.JFrame {
-
+private DatabaseReference mDatabase;
     /**
      * Creates new form SignUp
      */
     public SignUp() {
         initComponents();
         
+        initFirebase();
         //center this form
         this.setLocationRelativeTo(null);
     }
@@ -120,7 +130,6 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        closeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\X.png")); // NOI18N
         closeButton.setBorder(null);
         closeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,13 +141,10 @@ public class SignUp extends javax.swing.JFrame {
         errorPanel.setBackground(new java.awt.Color(220, 220, 220));
         errorPanel.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        errorLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\error.png")); // NOI18N
-
         errorTxtLabel.setForeground(new java.awt.Color(255, 0, 0));
         errorTxtLabel.setText("Błędne dane logowania!");
 
         hideErrorMessage.setForeground(new java.awt.Color(255, 255, 255));
-        hideErrorMessage.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\arrow.png")); // NOI18N
         hideErrorMessage.setBorder(null);
         hideErrorMessage.setBorderPainted(false);
         hideErrorMessage.setContentAreaFilled(false);
@@ -163,7 +169,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(errorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorTxtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(hideErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -274,14 +280,10 @@ public class SignUp extends javax.swing.JFrame {
         logoLabel.setToolTipText("");
         mainPanel.add(logoLabel);
         logoLabel.setBounds(60, 10, 110, 40);
-
-        logoIconLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\logo.png")); // NOI18N
         mainPanel.add(logoIconLabel);
         logoIconLabel.setBounds(10, 10, 40, 40);
-
-        backgroundLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\fiZZy\\Documents\\NetBeansProjects\\Tinder\\src\\main\\java\\IMAGES\\background.jpeg")); // NOI18N
         mainPanel.add(backgroundLabel);
-        backgroundLabel.setBounds(0, 0, 1280, 720);
+        backgroundLabel.setBounds(0, 0, 0, 0);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -352,12 +354,13 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_hideErrorMessageActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        String name = nameField.getText();
-        String surname = surnameField.getText();
+        registerNewUser(nameField.getText(),surnameField.getText(),String.valueOf(countryBox.getSelectedItem()),(Integer) ageSpinner.getValue(),emailField.getText(),phoneNumberField.getText(),String.valueOf(passwordField.getPassword()));
+        String name = nameField.toString();
+        String surname = surnameField.toString();
         String country = String.valueOf(countryBox.getSelectedItem());
         int age = (Integer) ageSpinner.getValue();
-        String email = emailField.getText();
-        String number = phoneNumberField.getText();
+        String email = emailField.toString();
+        String number = phoneNumberField.toString();
         String password = String.valueOf(passwordField.getPassword());
         
         if(name.equals("")){
@@ -449,4 +452,33 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField surnameField;
     private javax.swing.JLabel surnameLabel;
     // End of variables declaration//GEN-END:variables
+ 
+private void registerNewUser(String name, String surname, String country, int age, String email, String phoneNumber, String password){
+    mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+    String id = generateUUID();
+    User user = new User();
+    user.setName(name);
+    user.setId_user(id);
+    user.setSurname(surname);
+    user.setCountry(country);
+    user.setAge(age);
+    user.setEmail(email);
+    user.setPhoneNumber(phoneNumber);
+    user.setPassword(password);
+
+    mDatabase.child(id).setValue(user, new DatabaseReference.CompletionListener() {
+        @Override
+        public void onComplete(DatabaseError de, DatabaseReference dr) {
+           registerButton.setText("Finish");
+       }
+   });
+//     mDatabase.setValue(user, new DatabaseReference.CompletionListener() {
+ //       @Override
+//        public void onComplete(DatabaseError de, DatabaseReference dr) {
+//            registerButton.setText("Finish");
+//        }
+ //   });
 }
+
+}
+
