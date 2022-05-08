@@ -1,35 +1,30 @@
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.DatabaseReference.CompletionListener;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import static firebase.Firebaseinit.generateUUID;
-import static firebase.Firebaseinit.initFirebase;
-import firebase.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author fiZZy
  */
 public class SignUp extends javax.swing.JFrame {
-private DatabaseReference mDatabase;
+
     /**
      * Creates new form SignUp
      */
     public SignUp() {
         initComponents();
-        
-        initFirebase();
+
         //center this form
         this.setLocationRelativeTo(null);
     }
@@ -302,36 +297,36 @@ private DatabaseReference mDatabase;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     // Timer to hide error panel
     Timer timerUp = new Timer(10, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(errorPanel.getHeight() != 0){
+            if (errorPanel.getHeight() != 0) {
                 errorPanel.setBounds(errorPanel.getX(), errorPanel.getY(), errorPanel.getWidth(), errorPanel.getHeight() - 5);
-            } else{
+            } else {
                 timerUp.stop();
             }
         }
     });
-    
+
     // Timer to show error panel
     Timer timerDown = new Timer(10, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(errorPanel.getHeight() != 50){
+            if (errorPanel.getHeight() != 50) {
                 errorPanel.setBounds(errorPanel.getX(), errorPanel.getY(), errorPanel.getWidth(), errorPanel.getHeight() + 5);
-            } else{
+            } else {
                 timerDown.stop();
             }
         }
     });
-    
+
     private void passwordVisibleBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordVisibleBoxActionPerformed
         // show and hide password chars
-        if(passwordVisibleBox.isSelected()){
-            passwordField.setEchoChar((char)0);
-        }else{
+        if (passwordVisibleBox.isSelected()) {
+            passwordField.setEchoChar((char) 0);
+        } else {
             passwordField.setEchoChar('*');
         }
     }//GEN-LAST:event_passwordVisibleBoxActionPerformed
@@ -354,40 +349,61 @@ private DatabaseReference mDatabase;
     }//GEN-LAST:event_hideErrorMessageActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        registerNewUser(nameField.getText(),surnameField.getText(),String.valueOf(countryBox.getSelectedItem()),(Integer) ageSpinner.getValue(),emailField.getText(),phoneNumberField.getText(),String.valueOf(passwordField.getPassword()));
-        String name = nameField.toString();
-        String surname = surnameField.toString();
+        String name = nameField.getText();
+        String surname = surnameField.getText();
         String country = String.valueOf(countryBox.getSelectedItem());
         int age = (Integer) ageSpinner.getValue();
-        String email = emailField.toString();
-        String number = phoneNumberField.toString();
+        String email = emailField.getText();
+        String number = phoneNumberField.getText();
         String password = String.valueOf(passwordField.getPassword());
-        
-        if(name.equals("")){
+
+        if (name.equals("")) {
             errorTxtLabel.setText("Enter Your Name First!");
-        }else if(surname.equals("")){
+        } else if (surname.equals("")) {
             errorTxtLabel.setText("Enter Your Surname!");
-        }else if(country == "<none>"){
+        } else if (country == "<none>") {
             errorTxtLabel.setText("Chooce Your Country!");
-        }else if((age <= 0) || (age > 150)){
+        } else if ((age <= 0) || (age > 150)) {
             errorTxtLabel.setText("Enter Your Correct Age!");
-        }else if(email.equals("")){
+        } else if (email.equals("")) {
             errorTxtLabel.setText("Enter Your email!");
-        }else if(number.equals("")){
+        } else if (number.equals("")) {
             errorTxtLabel.setText("Enter Your Phone Number!");
-        }else if(password.equals("")){
+        } else if (password.equals("")) {
             errorTxtLabel.setText("Enter Your Password!");
-        }else{
-            this.dispose();
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.setVisible(true);
+        } else {
+            PreparedStatement ps;
+            String query = "INSERT INTO user_informations(name, surname, email, country, age, number, password) VALUES(?,?,?,?,?,?,?)";
+            boolean user_status = checkUsername(email);
+            if (user_status == true) {
+                JOptionPane.showMessageDialog(null, "User exist", "Registration Failed", 2);
+            } else {
+                try {
+                    ps = MyConnection.getConnection().prepareStatement(query);
+                    ps.setString(1, name);
+                    ps.setString(2, surname);
+                    ps.setString(3, email);
+                    ps.setString(4, country);
+                    ps.setInt(5, age);
+                    ps.setString(6, number);
+                    ps.setString(7, password);
+
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                this.dispose();
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.setVisible(true);
+            }
+
         }
-        
+
         // show error message
         timerDown.start();
     }//GEN-LAST:event_registerButtonActionPerformed
-     
-    
+
     /**
      * @param args the command line arguments
      */
@@ -452,33 +468,25 @@ private DatabaseReference mDatabase;
     private javax.swing.JTextField surnameField;
     private javax.swing.JLabel surnameLabel;
     // End of variables declaration//GEN-END:variables
- 
-private void registerNewUser(String name, String surname, String country, int age, String email, String phoneNumber, String password){
-    mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-    String id = generateUUID();
-    User user = new User();
-    user.setName(name);
-    user.setId_user(id);
-    user.setSurname(surname);
-    user.setCountry(country);
-    user.setAge(age);
-    user.setEmail(email);
-    user.setPhoneNumber(phoneNumber);
-    user.setPassword(password);
+public boolean checkUsername(String email) {
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean checkUser = false;
+        String query = "SELECT * FROM `user_informations` WHERE `email` =?";
 
-    mDatabase.child(id).setValue(user, new DatabaseReference.CompletionListener() {
-        @Override
-        public void onComplete(DatabaseError de, DatabaseReference dr) {
-           registerButton.setText("Finish");
-       }
-   });
-//     mDatabase.setValue(user, new DatabaseReference.CompletionListener() {
- //       @Override
-//        public void onComplete(DatabaseError de, DatabaseReference dr) {
-//            registerButton.setText("Finish");
-//        }
- //   });
+        try {
+            ps = MyConnection.getConnection().prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                checkUser = true;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return checkUser;
+    }
 }
-
-}
-

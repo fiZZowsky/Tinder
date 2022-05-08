@@ -8,10 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-/**
- *
- * @author fiZZy
- */
 public class MainMenu extends javax.swing.JFrame {
 
     /**

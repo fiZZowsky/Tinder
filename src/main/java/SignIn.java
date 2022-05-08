@@ -1,32 +1,22 @@
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import static firebase.Firebaseinit.initFirebase;
-import firebase.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author fiZZy
- */
 
 public class SignIn extends javax.swing.JFrame {
-private DatabaseReference mDatabase;
+
     /**
      * Creates new form SignIn
      */
     public SignIn() {
         initComponents();
-        initFirebase();
+        
         //center this form
         this.setLocationRelativeTo(null);
     }
@@ -290,22 +280,37 @@ private DatabaseReference mDatabase;
         timerUp.start();
         
     }//GEN-LAST:event_hideErrorMessageMouseClicked
-private void closeWindow(){
-            this.dispose();
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.setVisible(true);
-}
+
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
+        PreparedStatement ps;
+        ResultSet rs;
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
+        String query = "SELECT * FROM `user_informations` WHERE `email` =? AND `password` =?";
         if(username.equals("")){
             errorTxtLabel.setText("Enter Your Username First!");
         }else if(password.equals("")){
             errorTxtLabel.setText("Enter Your Password!");
-       }else if(username.equals("admin") && (password.equals("admin"))){
-           closeWindow();
+        }else if(username.equals("admin") && (password.equals("admin"))){
+            this.dispose();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setVisible(true);
         }else{
-            readData(username, password);   
+            try {
+                ps = MyConnection.getConnection().prepareStatement(query);
+                ps.setString(1, username);
+                ps.setString(2, password);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    this.dispose();
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect Username Or Password", "Login Failed", 2);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(SignIn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         // show error message
@@ -383,24 +388,4 @@ private void closeWindow(){
     private javax.swing.JCheckBox showPasswordCheckBox;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
-    private void readData(String username, String password) {
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dS : dataSnapshot.getChildren() ){
-                User user = dS.getValue(User.class);
-                if(user.getEmail().equals(username)){
-                  if(user.getPassword().equals(password)){
-                    closeWindow();
-                  }
-                }
-              
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
 }
