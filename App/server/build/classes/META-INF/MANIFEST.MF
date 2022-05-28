@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.8
+Created-By: 15.0.1+9-18 (Oracle Corporation)
+Class-Path: lib/jackson-annotations-2.10.1.jar lib/jackson-core-2.10.1
+ .jar lib/jackson-databind-2.10.1.jar lib/netty-buffer-4.1.44.Final.ja
+ r lib/netty-codec-4.1.44.Final.jar lib/netty-codec-http-4.1.44.Final.
+ jar lib/netty-common-4.1.44.Final.jar lib/netty-handler-4.1.44.Final.
+ jar lib/netty-resolver-4.1.44.Final.jar lib/netty-socketio-1.7.18.jar
+  lib/netty-transport-4.1.44.Final.jar lib/netty-transport-native-epol
+ l-4.1.44.Final.jar lib/netty-transport-native-unix-common-4.1.44.Fina
+ l.jar lib/slf4j-api-1.7.21.jar lib/mysql-connector-java-5.1.23-bin.ja
+ r
+X-COMMENT: Main-Class will be added automatically by build
+Main-Class: com.raven.main.Main
+
