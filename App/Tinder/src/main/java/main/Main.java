@@ -82,9 +82,9 @@ public class Main extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         body = new javax.swing.JLayeredPane();
         loading = new form.Loading();
-        vIew_Image = new form.VIew_Image();
-        home = new form.Home();
         login = new form.Login();
+        home = new form.Home();
+        vIew_Image = new form.VIew_Image();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -96,24 +96,21 @@ public class Main extends javax.swing.JFrame {
         background.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         body.setMinimumSize(new java.awt.Dimension(1280, 720));
-        body.setPreferredSize(new java.awt.Dimension(1280, 720));
         body.setLayout(new java.awt.CardLayout());
 
         loading.setDoubleBuffered(false);
         loading.setMaximumSize(new java.awt.Dimension(65731, 65689));
-        loading.setMinimumSize(new java.awt.Dimension(209, 167));
         loading.setOpaque(false);
-        loading.setPreferredSize(new java.awt.Dimension(209, 167));
         body.add(loading, "card2");
-        body.add(vIew_Image, "card4");
-        body.add(home, "card5");
         body.add(login, "card3");
+        body.add(home, "card5");
+        body.add(vIew_Image, "card4");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(body, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(body, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
