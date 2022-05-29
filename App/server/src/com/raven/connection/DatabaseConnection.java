@@ -20,6 +20,11 @@ public class DatabaseConnection {
     }
 
     public void connectToDatabase() throws SQLException {
+        String server = "localhost";
+        String port = "3306";
+        String database = "database";
+        String userName = "root";
+        String password = "";
         connection = java.sql.DriverManager.getConnection("jdbc:mysql://localhost/users", "root", "");
     }
 
