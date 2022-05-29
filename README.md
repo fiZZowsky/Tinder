@@ -20,7 +20,9 @@
   > If the following window is displayed, you are ready to start the application
 
 ![Server](server_start.png)
-
+  
+- ⚠️ Important ⚠️
+  W przypadku otrzymania poniższego kodu błędu należy wejść w server/connection/DatabaseConnection.java i zmienić port na ten pokazywany przez XAMPP do modułu MySQL.
 - Run Tinder App
   > You can run two Tinder application windows to test chat capability
 
