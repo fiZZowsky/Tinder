@@ -24,7 +24,7 @@ public class Main extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/icon/icon.png")).getImage());
         ComponentResizer com = new ComponentResizer();
         com.registerComponent(this);
-        com.setMinimumSize(new Dimension(900, 500));
+        com.setMinimumSize(new Dimension(1280, 720));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
         login.setVisible(true);
@@ -104,6 +104,9 @@ public class Main extends javax.swing.JFrame {
         body.add(loading, "card2");
         body.add(login, "card3");
         body.add(home, "card5");
+
+        vIew_Image.setMinimumSize(new java.awt.Dimension(1280, 720));
+        vIew_Image.setPreferredSize(new java.awt.Dimension(1280, 720));
         body.add(vIew_Image, "card4");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);

@@ -93,6 +93,7 @@ service\Service$2.class
 swing\JIMSendTextPane$WarpLabelView.class
 form\Menu_Right.class
 form\Login$1$1.class
+form\P_Register$4.class
 component\OptionButton.class
 form\P_Register.class
 component\Item_People$1.class
@@ -107,4 +108,5 @@ component\MenuButton.class
 component\Chat_Title.class
 form\Login$1$2.class
 service\Service$3.class
+form\P_Register$5.class
 swing\JIMSendTextPane$WarpColumnFactory.class

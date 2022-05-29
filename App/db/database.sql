@@ -1,16 +1,13 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : SEVER 3305
-Source Server Version : 50620
-Source Host           : localhost:3305
-Source Database       : chat_application
+Source Server         : SEVER 9999
+Source Host           : localhost:3306
+Source Database       : database
 
 Target Server Type    : MYSQL
-Target Server Version : 50620
-File Encoding         : 65001
 
-Date: 2021-07-29 20:23:48
+Date: 2022-05-29 11:14:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,9 +42,9 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('36', 'dara', '123');
-INSERT INTO `user` VALUES ('37', 'raven', '123');
-INSERT INTO `user` VALUES ('38', 'china', '123');
+INSERT INTO `user` VALUES ('36', 'fizzy', '123');
+INSERT INTO `user` VALUES ('37', 'vidi', '123');
+INSERT INTO `user` VALUES ('38', 'greenpoint', '123');
 
 -- ----------------------------
 -- Table structure for user_account
@@ -67,6 +64,6 @@ CREATE TABLE `user_account` (
 -- ----------------------------
 -- Records of user_account
 -- ----------------------------
-INSERT INTO `user_account` VALUES ('36', 'dara', '', null, '', '1');
-INSERT INTO `user_account` VALUES ('37', 'raven', '', null, '', '1');
-INSERT INTO `user_account` VALUES ('38', 'china', '', null, '', '1');
+INSERT INTO `user_account` VALUES ('36', 'fizzy', '', null, '', '1');
+INSERT INTO `user_account` VALUES ('37', 'vidi', '', null, '', '1');
+INSERT INTO `user_account` VALUES ('38', 'greenpoint', '', null, '', '1');
