@@ -22,7 +22,7 @@
 ![Server](server_start.png)
   
 - ⚠️ Important ⚠️
-  >W przypadku otrzymania poniższego kodu błędu należy wejść w server/connection/DatabaseConnection.java i zmienić port na ten pokazywany przez XAMPP do modułu MySQL.
+  >If you receive the error code below, go to server / connection / DatabaseConnection.java and change the port to the one shown by XAMPP for the MySQL module.
 
 ![Server_Error](error.png)
   
