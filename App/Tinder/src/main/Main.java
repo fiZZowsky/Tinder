@@ -98,13 +98,12 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         border.setBackground(new java.awt.Color(229, 229, 229));
 
         background.setBackground(new java.awt.Color(255, 255, 255));
 
-        title.setBackground(new java.awt.Color(229, 229, 229));
+        title.setBackground(new java.awt.Color(204, 204, 255));
         title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 titleMouseDragged(evt);

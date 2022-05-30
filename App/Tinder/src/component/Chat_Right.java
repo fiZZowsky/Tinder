@@ -47,6 +47,8 @@ public class Chat_Right extends javax.swing.JLayeredPane {
 
         txt = new component.Chat_Item();
 
+        txt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255), 2));
+
         setLayer(txt, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
