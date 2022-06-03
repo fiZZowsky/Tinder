@@ -137,7 +137,7 @@ public class ServiceUser {
     private final String LOGIN = "select UserID, user_account.name, user_account.surname, user_account.age, user_account.country, user_account.UserName, Gender, ImageString from `user` join user_account using (UserID) where `user`.UserName=BINARY(?) and `user`.`Password`=BINARY(?) and user_account.`Status`='1'";
     private final String SELECT_USER_ACCOUNT = "select UserID, name, surname, age, country, UserName, Gender, ImageString from user_account where user_account.`Status`='1' and UserID<>?";
     private final String INSERT_USER = "insert into user (name, surname, age, country, UserName, `Password`) values (?,?,?,?,?,?)";
-    private final String INSERT_USER_ACCOUNT = "insert into user_account (name, surname, age, country, UserID, UserName) values (?,?,?,?,?,?)";
+    private final String INSERT_USER_ACCOUNT = "insert into user_account (UserID, name, surname, age, country, UserName) values (?,?,?,?,?,?)";
     private final String CHECK_USER = "select UserID from user where UserName =? limit 1";
     //  Instance
     private final Connection con;

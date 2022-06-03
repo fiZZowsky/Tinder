@@ -3,8 +3,7 @@ package model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Model_User_Account {
-
+public class Model_User_Account {    
     public int getUserID() {
         return userID;
     }
@@ -13,6 +12,38 @@ public class Model_User_Account {
         this.userID = userID;
     }
 
+    public String getName(){
+        return name;
+    }
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public String getSurname(){
+        return surname;
+    }
+    
+    public void setSurname(String surname){
+        this.surname = surname;
+    }
+    
+    public int getAge(){
+        return age;
+    }
+    
+    public void setAge(int age){
+        this.age = age;
+    }
+    
+    public String getCountry(){
+        return country;
+    }
+    
+    public void setCountry(String country){
+        this.country = country;
+    }
+    
     public String getUserName() {
         return userName;
     }
@@ -47,6 +78,10 @@ public class Model_User_Account {
 
     public Model_User_Account(int userID, String userName, String gender, String image, boolean status) {
         this.userID = userID;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.country = country;
         this.userName = userName;
         this.gender = gender;
         this.image = image;
@@ -57,6 +92,10 @@ public class Model_User_Account {
         JSONObject obj = (JSONObject) json;
         try {
             userID = obj.getInt("userID");
+            name = obj.getString("name");
+            surname = obj.getString("surname");
+            age = obj.getInt("age");
+            country = obj.getString("country");
             userName = obj.getString("userName");
             gender = obj.getString("gender");
             image = obj.getString("image");
@@ -67,6 +106,10 @@ public class Model_User_Account {
     }
 
     private int userID;
+    private String name;
+    private String surname;
+    private int age;
+    private String country;
     private String userName;
     private String gender;
     private String image;

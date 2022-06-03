@@ -35,8 +35,8 @@ public class P_Register extends javax.swing.JPanel {
         CountryBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(268, 420));
-        setPreferredSize(new java.awt.Dimension(268, 420));
+        setMinimumSize(new java.awt.Dimension(268, 500));
+        setPreferredSize(new java.awt.Dimension(268, 500));
 
         lbTitle.setFont(new java.awt.Font("sansserif", 0, 30)); // NOI18N
         lbTitle.setForeground(new java.awt.Color(87, 87, 87));
@@ -164,7 +164,7 @@ public class P_Register extends javax.swing.JPanel {
                 .addComponent(cmdBackLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbError)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,7 +196,7 @@ public class P_Register extends javax.swing.JPanel {
         } else if (!password.equals(confirmPassword)) {
             txtPass.grabFocus();
         } else {
-            Model_Register data = new Model_Register(userName, password);
+            Model_Register data = new Model_Register(name, surname, age, country, userName, password);
             PublicEvent.getInstance().getEventLogin().register(data, new EventMessage() {
                 @Override
                 public void callMessage(Model_Message message) {

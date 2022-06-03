@@ -99,14 +99,14 @@ public class Login extends javax.swing.JPanel {
         pic.setMinimumSize(new java.awt.Dimension(1280, 720));
 
         jPanel1.setBackground(new java.awt.Color(32, 140, 215));
-        jPanel1.setMinimumSize(new java.awt.Dimension(268, 420));
-        jPanel1.setPreferredSize(new java.awt.Dimension(268, 420));
+        jPanel1.setMinimumSize(new java.awt.Dimension(268, 510));
+        jPanel1.setPreferredSize(new java.awt.Dimension(268, 510));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         slide.setBackground(new java.awt.Color(255, 255, 255));
-        slide.setMinimumSize(new java.awt.Dimension(268, 480));
-        slide.setPreferredSize(new java.awt.Dimension(268, 480));
+        slide.setMinimumSize(new java.awt.Dimension(268, 510));
+        slide.setPreferredSize(new java.awt.Dimension(268, 510));
 
         javax.swing.GroupLayout slideLayout = new javax.swing.GroupLayout(slide);
         slide.setLayout(slideLayout);
@@ -116,7 +116,7 @@ public class Login extends javax.swing.JPanel {
         );
         slideLayout.setVerticalGroup(
             slideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -132,7 +132,7 @@ public class Login extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(slide, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                .addComponent(slide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -178,9 +178,9 @@ public class Login extends javax.swing.JPanel {
             .addGroup(picLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
