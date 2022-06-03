@@ -34,6 +34,10 @@ CREATE TABLE `files` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `UserID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `age` int(10) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
   `UserName` varchar(255) DEFAULT NULL,
   `Password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`UserID`)
@@ -42,9 +46,9 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('36', 'fizzy', '123');
-INSERT INTO `user` VALUES ('37', 'vidi', '123');
-INSERT INTO `user` VALUES ('38', 'greenpoint', '123');
+INSERT INTO `user` VALUES ('36', 'Piotr', 'Rownicki', '21', 'Polska', 'fizzy', '123');
+INSERT INTO `user` VALUES ('37', 'Wiktor', 'Sikora', '21', 'Polska', 'vidi', '123');
+INSERT INTO `user` VALUES ('38', 'Mateusz', 'Pacak', '22', 'Polska', 'greenpoint', '123');
 
 -- ----------------------------
 -- Table structure for user_account
@@ -52,6 +56,10 @@ INSERT INTO `user` VALUES ('38', 'greenpoint', '123');
 DROP TABLE IF EXISTS `user_account`;
 CREATE TABLE `user_account` (
   `UserID` int(10) unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `age` int(10) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
   `UserName` varchar(255) DEFAULT NULL,
   `Gender` char(1) NOT NULL DEFAULT '',
   `Image` longblob,
@@ -64,6 +72,6 @@ CREATE TABLE `user_account` (
 -- ----------------------------
 -- Records of user_account
 -- ----------------------------
-INSERT INTO `user_account` VALUES ('36', 'fizzy', '', null, '', '1');
-INSERT INTO `user_account` VALUES ('37', 'vidi', '', null, '', '1');
-INSERT INTO `user_account` VALUES ('38', 'greenpoint', '', null, '', '1');
+INSERT INTO `user_account` VALUES ('36', 'Piotr', 'Rownicki', '21', 'Polska', 'fizzy', '', null, '', '1');
+INSERT INTO `user_account` VALUES ('37', 'Wiktor', 'Sikora', '21', 'vidi', '', null, '', '1');
+INSERT INTO `user_account` VALUES ('38', 'Mateusz', 'Pacak', '22', 'greenpoint', '', null, '', '1');

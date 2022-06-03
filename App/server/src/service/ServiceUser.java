@@ -28,7 +28,7 @@ public class ServiceUser {
             ResultSet r = p.executeQuery();
             if (r.first()) {
                 message.setAction(false);
-                message.setMessage("User Already Exit");
+                message.setMessage("User Already Exist");
             } else {
                 message.setAction(true);
             }
@@ -38,8 +38,12 @@ public class ServiceUser {
                 //  Insert User Register
                 con.setAutoCommit(false);
                 p = con.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
-                p.setString(1, data.getUserName());
-                p.setString(2, data.getPassword());
+                p.setString(1, data.getName());
+                p.setString(2, data.getSurname());
+                p.setInt(3, data.getAge());
+                p.setString(4, data.getCountry());
+                p.setString(5, data.getUserName());
+                p.setString(6, data.getPassword());
                 p.execute();
                 r = p.getGeneratedKeys();
                 r.first();
@@ -49,14 +53,18 @@ public class ServiceUser {
                 //  Create user account
                 p = con.prepareStatement(INSERT_USER_ACCOUNT);
                 p.setInt(1, userID);
-                p.setString(2, data.getUserName());
+                p.setString(2, data.getName());
+                p.setString(3, data.getSurname());
+                p.setInt(4, data.getAge());
+                p.setString(5, data.getCountry());
+                p.setString(6, data.getUserName());
                 p.execute();
                 p.close();
                 con.commit();
                 con.setAutoCommit(true);
                 message.setAction(true);
                 message.setMessage("Ok");
-                message.setData(new Model_User_Account(userID, data.getUserName(), "", "", true));
+                message.setData(new Model_User_Account(userID, data.getName(), data.getSurname(), data.getAge(), data.getCountry(), data.getUserName(), "", "", true));
             }
         } catch (SQLException e) {
             message.setAction(false);
@@ -80,10 +88,14 @@ public class ServiceUser {
         ResultSet r = p.executeQuery();
         if (r.first()) {
             int userID = r.getInt(1);
-            String userName = r.getString(2);
-            String gender = r.getString(3);
-            String image = r.getString(4);
-            data = new Model_User_Account(userID, userName, gender, image, true);
+            String name = r.getString(2);
+            String surname = r.getString(3);
+            int age = r.getInt(4);
+            String country = r.getString(5);
+            String userName = r.getString(6);
+            String gender = r.getString(7);
+            String image = r.getString(8);
+            data = new Model_User_Account(userID, name, surname, age, country, userName, gender, image, true);
         }
         r.close();
         p.close();
@@ -97,10 +109,14 @@ public class ServiceUser {
         ResultSet r = p.executeQuery();
         while (r.next()) {
             int userID = r.getInt(1);
-            String userName = r.getString(2);
-            String gender = r.getString(3);
-            String image = r.getString(4);
-            list.add(new Model_User_Account(userID, userName, gender, image, checkUserStatus(userID)));
+            String name = r.getString(2);
+            String surname = r.getString(3);
+            int age = r.getInt(4);
+            String country = r.getString(5);
+            String userName = r.getString(6);
+            String gender = r.getString(7);
+            String image = r.getString(8);
+            list.add(new Model_User_Account(userID, name, surname, age, country, userName, gender, image, checkUserStatus(userID)));
         }
         r.close();
         p.close();
@@ -118,10 +134,10 @@ public class ServiceUser {
     }
 
     //  SQL
-    private final String LOGIN = "select UserID, user_account.UserName, Gender, ImageString from `user` join user_account using (UserID) where `user`.UserName=BINARY(?) and `user`.`Password`=BINARY(?) and user_account.`Status`='1'";
-    private final String SELECT_USER_ACCOUNT = "select UserID, UserName, Gender, ImageString from user_account where user_account.`Status`='1' and UserID<>?";
-    private final String INSERT_USER = "insert into user (UserName, `Password`) values (?,?)";
-    private final String INSERT_USER_ACCOUNT = "insert into user_account (UserID, UserName) values (?,?)";
+    private final String LOGIN = "select UserID, user_account.name, user_account.surname, user_account.age, user_account.country, user_account.UserName, Gender, ImageString from `user` join user_account using (UserID) where `user`.UserName=BINARY(?) and `user`.`Password`=BINARY(?) and user_account.`Status`='1'";
+    private final String SELECT_USER_ACCOUNT = "select UserID, name, surname, age, country, UserName, Gender, ImageString from user_account where user_account.`Status`='1' and UserID<>?";
+    private final String INSERT_USER = "insert into user (name, surname, age, country, UserName, `Password`) values (?,?,?,?,?,?)";
+    private final String INSERT_USER_ACCOUNT = "insert into user_account (name, surname, age, country, UserID, UserName) values (?,?,?,?,?,?)";
     private final String CHECK_USER = "select UserID from user where UserName =? limit 1";
     //  Instance
     private final Connection con;

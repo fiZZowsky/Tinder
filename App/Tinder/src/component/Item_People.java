@@ -30,13 +30,13 @@ public class Item_People extends javax.swing.JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
-                setBackground(new Color(230, 230, 230));
+                setBackground(new Color(102, 255, 255));
                 mouseOver = true;
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
-                setBackground(new Color(242, 242, 242));
+                setBackground(new Color(255, 255, 255));
                 mouseOver = false;
             }
 
@@ -57,6 +57,8 @@ public class Item_People extends javax.swing.JPanel {
         lb = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         activeStatus = new swing.ActiveStatus();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         imageAvatar1.setBorderSize(0);
         imageAvatar1.setImage(new javax.swing.ImageIcon(getClass().getResource("/icon/user.png"))); // NOI18N
