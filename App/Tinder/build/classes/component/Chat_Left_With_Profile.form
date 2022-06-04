@@ -41,7 +41,7 @@
           <Properties>
             <Property name="borderSize" type="int" value="0"/>
             <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/raven/icon/testing/dog.jpg"/>
+              <Image iconType="3" name="/icon/testing/dog.jpg"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[31, 31]"/>

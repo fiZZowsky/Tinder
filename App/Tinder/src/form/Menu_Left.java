@@ -75,29 +75,10 @@ public class Menu_Left extends javax.swing.JPanel {
         });
         showMessage();
     }
-
+        
     private void showMessage() {
-        //  test data
         menuList.removeAll();
         for (Model_User_Account d : userAccount) {
-            menuList.add(new Item_People(null), "wrap");
-        }
-        refreshMenuList();
-    }
-
-    private void showGroup() {
-        //  test data
-        menuList.removeAll();
-        for (int i = 0; i < 5; i++) {
-            menuList.add(new Item_People(null), "wrap");
-        }
-        refreshMenuList();
-    }
-
-    private void showBox() {
-        //  test data
-        menuList.removeAll();
-        for (int i = 0; i < 10; i++) {
             menuList.add(new Item_People(null), "wrap");
         }
         refreshMenuList();
@@ -210,7 +191,6 @@ public class Menu_Left extends javax.swing.JPanel {
             menuMessage.setSelected(true);
             menuProfile.setSelected(false);
             menuSettings.setSelected(false);
-            showMessage();
         }
     }//GEN-LAST:event_menuMessageActionPerformed
 
@@ -219,7 +199,6 @@ public class Menu_Left extends javax.swing.JPanel {
             menuMessage.setSelected(false);
             menuProfile.setSelected(true);
             menuSettings.setSelected(false);
-            showGroup();
         }
     }//GEN-LAST:event_menuProfileActionPerformed
 
@@ -228,7 +207,6 @@ public class Menu_Left extends javax.swing.JPanel {
             menuMessage.setSelected(false);
             menuProfile.setSelected(false);
             menuSettings.setSelected(true);
-            showBox();
         }
     }//GEN-LAST:event_menuSettingsActionPerformed
 

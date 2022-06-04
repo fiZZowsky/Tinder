@@ -99,13 +99,13 @@ public class Chat_Item extends javax.swing.JLayeredPane {
 
     public void sendSuccess() {
         if (label != null) {
-            label.setIcon(new ImageIcon(getClass().getResource("/com/raven/icon/tick.png")));
+            label.setIcon(new ImageIcon(getClass().getResource("/icon/tick.png")));
         }
     }
 
     public void seen() {
         if (label != null) {
-            label.setIcon(new ImageIcon(getClass().getResource("/com/raven/icon/double_tick.png")));
+            label.setIcon(new ImageIcon(getClass().getResource("/icon/double_tick.png")));
         }
     }
 

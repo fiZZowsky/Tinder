@@ -30,13 +30,13 @@ public class Item_People extends javax.swing.JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
-                setBackground(new Color(102, 255, 255));
+                setBackground(new Color(230, 230, 230));
                 mouseOver = true;
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
-                setBackground(new Color(255, 255, 255));
+                setBackground(new Color(242, 242, 242));
                 mouseOver = false;
             }
 

@@ -76,7 +76,7 @@ public class Model_User_Account {
         this.status = status;
     }
 
-    public Model_User_Account(int userID, String userName, String gender, String image, boolean status) {
+    public Model_User_Account(int userID, String name, String surname, int age, String country, String userName, String gender, String image, boolean status) {
         this.userID = userID;
         this.name = name;
         this.surname = surname;

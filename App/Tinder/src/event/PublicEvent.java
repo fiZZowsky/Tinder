@@ -39,7 +39,7 @@ public class PublicEvent {
     public void addEventMenuLeft(EventMenuLeft event) {
         this.eventMenuLeft = event;
     }
-
+    
     public EventMain getEventMain() {
         return eventMain;
     }
