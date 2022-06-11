@@ -28,3 +28,16 @@
   
 - Run Tinder App
   >In order to test the application, run two application windows and create two accounts. In order to receive / send a message, you must enter a specific person.
+
+&nbsp;
+
+##Screens from App
+
+&nbsp;
+
+![App1](login1.png) ![App2](register1.png)
+
+
+![App3](chat1.png)  ![App4](chat2.png)
+
+&nbsp;
