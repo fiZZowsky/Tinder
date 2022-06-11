@@ -27,17 +27,4 @@
 ![Server_Error](error.png)
   
 - Run Tinder App
-  > You can run two Tinder application windows to test chat capability
-
-&nbsp;
-
-## Sample login details
-- User 1
-  > Login: fizzy
-  > Password: 123
-- User 2
-  > Login: vidi
-  > Password: 123
-- User 3
-  > Login: PanPawel
-  > Password: 123
+  >In order to test the application, run two application windows and create two accounts. In order to receive / send a message, you must enter a specific person.
