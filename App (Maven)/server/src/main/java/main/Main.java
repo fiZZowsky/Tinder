@@ -3,7 +3,10 @@ package main;
 import connection.DatabaseConnection;
 import service.Service;
 import java.sql.SQLException;
-
+/**
+ * Klasa głowna serwera
+ * 
+ */
 public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
@@ -48,7 +51,10 @@ public class Main extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Formuje okno
+ * @param evt pobiera event
+ */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             DatabaseConnection.getInstance().connectToDatabase();

@@ -9,7 +9,10 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import net.miginfocom.swing.MigLayout;
-
+/**
+ * Odpowiedzialna za lewy pasek w menu
+ * 
+ */
 public class Menu_Left extends javax.swing.JPanel {
 
     private List<Model_User_Account> userAccount;
@@ -75,7 +78,10 @@ public class Menu_Left extends javax.swing.JPanel {
         });
         showMessage();
     }
-        
+   /**
+    * Pokazuje wiadomości
+    */
+   
     private void showMessage() {
         menuList.removeAll();
         for (Model_User_Account d : userAccount) {
@@ -83,7 +89,9 @@ public class Menu_Left extends javax.swing.JPanel {
         }
         refreshMenuList();
     }
-
+/**
+ * Aktualizuje liste menu
+ */
     private void refreshMenuList() {
         menuList.repaint();
         menuList.revalidate();
@@ -185,7 +193,10 @@ public class Menu_Left extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Odpowiada za wiadomości menu
+ * @param evt 
+ */
     private void menuMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMessageActionPerformed
         if (!menuMessage.isSelected()) {
             menuMessage.setSelected(true);
@@ -193,7 +204,10 @@ public class Menu_Left extends javax.swing.JPanel {
             menuSettings.setSelected(false);
         }
     }//GEN-LAST:event_menuMessageActionPerformed
-
+/**
+ * Odpowiada za profile menu
+ * @param evt 
+ */
     private void menuProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProfileActionPerformed
         if (!menuProfile.isSelected()) {
             menuMessage.setSelected(false);
@@ -201,7 +215,10 @@ public class Menu_Left extends javax.swing.JPanel {
             menuSettings.setSelected(false);
         }
     }//GEN-LAST:event_menuProfileActionPerformed
-
+/**
+ * Odpowiada za ustawienia menu
+ * @param evt 
+ */
     private void menuSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingsActionPerformed
         if (!menuSettings.isSelected()) {
             menuMessage.setSelected(false);

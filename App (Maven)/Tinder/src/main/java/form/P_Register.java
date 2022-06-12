@@ -4,7 +4,10 @@ import event.EventMessage;
 import event.PublicEvent;
 import model.Model_Message;
 import model.Model_Register;
-
+/**
+ * Odpowiada za rejestracje użytkownika
+ * @author T460s i7
+ */
 public class P_Register extends javax.swing.JPanel {
 
     public P_Register() {
@@ -167,11 +170,17 @@ public class P_Register extends javax.swing.JPanel {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Powrót do logowania
+ * @param evt 
+ */
     private void cmdBackLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBackLoginActionPerformed
         PublicEvent.getInstance().getEventLogin().goLogin();
     }//GEN-LAST:event_cmdBackLoginActionPerformed
-
+/**
+ * Rejestracja
+ * @param evt 
+ */
     private void cmdRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegisterActionPerformed
         String name = txtName.getText().trim();
         String surname = txtSurname.getText().trim();
@@ -209,11 +218,17 @@ public class P_Register extends javax.swing.JPanel {
             });
         }
     }//GEN-LAST:event_cmdRegisterActionPerformed
-
+/**
+ * Powtórzenie hasla
+ * @param evt 
+ */
     private void txtRePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRePasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRePasswordActionPerformed
-
+/**
+ * user action
+ * @param evt 
+ */
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed

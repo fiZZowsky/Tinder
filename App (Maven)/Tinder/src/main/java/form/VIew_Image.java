@@ -6,7 +6,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.Icon;
 import javax.swing.SwingUtilities;
-
+/**
+ * Odpowiada za obrazki
+ * 
+ */
 public class VIew_Image extends javax.swing.JComponent {
 
     public VIew_Image() {
@@ -14,7 +17,10 @@ public class VIew_Image extends javax.swing.JComponent {
     }
 
     private Icon image;
-
+/**
+ * Zobaczenie obrazka
+ * @param image 
+ */
     public void viewImage(Icon image) {
         this.image = image;
         pic.setImage(image);
@@ -73,13 +79,19 @@ public class VIew_Image extends javax.swing.JComponent {
             .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Odpowiada za myszkę
+ * @param evt 
+ */
     private void picMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_picMousePressed
         if (SwingUtilities.isLeftMouseButton(evt)) {
             setVisible(false);
         }
     }//GEN-LAST:event_picMousePressed
-
+/**
+ * Zapisuje akcje
+ * @param evt 
+ */
     private void cmdSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveActionPerformed
         PublicEvent.getInstance().getEventImageView().saveImage(image);
     }//GEN-LAST:event_cmdSaveActionPerformed

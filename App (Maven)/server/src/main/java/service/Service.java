@@ -24,7 +24,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTextArea;
-
+/**
+ * 
+ *Odpowiedzialna za service
+ */
 public class Service {
     
     private static Service instance;
@@ -34,21 +37,30 @@ public class Service {
     private List<Model_Client> listClient;
     private JTextArea textArea;
     private final int PORT_NUMBER = 9999;
-    
+    /**
+     * Pobranie instancji
+     * @param textArea
+     * @return instance
+     */
     public static Service getInstance(JTextArea textArea) {
         if (instance == null) {
             instance = new Service(textArea);
         }
         return instance;
     }
-    
+    /**
+     * Ustawia wartości związane z service
+     * @param textArea 
+     */
     private Service(JTextArea textArea) {
         this.textArea = textArea;
         serviceUser = new ServiceUser();
         serviceFile = new ServiceFIle();
         listClient = new ArrayList<>();
     }
-    
+    /**
+     * Odpala server
+     */
     public void startServer() {
         Configuration config = new Configuration();
         config.setPort(PORT_NUMBER);
@@ -155,19 +167,33 @@ public class Service {
         server.start();
         textArea.append("Server has Start on port : " + PORT_NUMBER + "\n");
     }
-    
+    /**
+     * Połączenie użytkownika
+     * @param userID identyfikator użytkownika
+     */
     private void userConnect(int userID) {
         server.getBroadcastOperations().sendEvent("user_status", userID, true);
     }
-    
+    /**
+     * Rozłączenie użytkownika 
+     * @param userID identyfikator użytkownika
+     */
     private void userDisconnect(int userID) {
         server.getBroadcastOperations().sendEvent("user_status", userID, false);
     }
-    
+    /**
+     * Dodanie klienta
+     * @param client
+     * @param user 
+     */
     private void addClient(SocketIOClient client, Model_User_Account user) {
         listClient.add(new Model_Client(client, user));
     }
-    
+    /**
+     * Wysłanie do klienta
+     * @param data
+     * @param ar 
+     */
     private void sendToClient(Model_Send_Message data, AckRequest ar) {
         if (data.getMessageType() == MessageType.IMAGE.getValue() || data.getMessageType() == MessageType.FILE.getValue()) {
             try {
@@ -186,7 +212,11 @@ public class Service {
             }
         }
     }
-    
+    /**
+     * Wysłanie pliku do klienta
+     * @param data
+     * @param dataImage 
+     */
     private void sendTempFileToClient(Model_Send_Message data, Model_Receive_Image dataImage) {
         for (Model_Client c : listClient) {
             if (c.getUser().getUserID() == data.getToUserID()) {
@@ -195,7 +225,11 @@ public class Service {
             }
         }
     }
-    
+    /**
+     * Usuniecie klienta
+     * @param client
+     * @return 
+     */
     public int removeClient(SocketIOClient client) {
         for (Model_Client d : listClient) {
             if (d.getClient() == client) {
@@ -205,7 +239,10 @@ public class Service {
         }
         return 0;
     }
-    
+    /**
+     * Pobranie listy klientów
+     * @return 
+     */
     public List<Model_Client> getListClient() {
         return listClient;
     }

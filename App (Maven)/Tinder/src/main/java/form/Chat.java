@@ -9,7 +9,10 @@ import model.Model_Receive_Message;
 import model.Model_Send_Message;
 import model.Model_User_Account;
 import net.miginfocom.swing.MigLayout;
-
+/**
+ * Odpowiada za chat
+ * 
+ */
 public class Chat extends javax.swing.JPanel {
 
     private Chat_Title chatTitle;
@@ -20,7 +23,9 @@ public class Chat extends javax.swing.JPanel {
         initComponents();
         init();
     }
-
+/**
+ * Inicjuej chat
+ */
     private void init() {
         setLayout(new MigLayout("fillx", "0[fill]0", "0[]0[100%, fill]0[shrink 0]0"));
         chatTitle = new Chat_Title();
@@ -43,13 +48,19 @@ public class Chat extends javax.swing.JPanel {
         add(chatBody, "wrap");
         add(chatBottom, "h ::50%");
     }
-
+/**
+ * Ustawia użytkownika
+ * @param user 
+ */
     public void setUser(Model_User_Account user) {
         chatTitle.setUserName(user);
         chatBottom.setUser(user);
         chatBody.clearChat();
     }
-
+/**
+ * Aktualizuje użytkownika
+ * @param user 
+ */
     public void updateUser(Model_User_Account user) {
         chatTitle.updateUser(user);
     }

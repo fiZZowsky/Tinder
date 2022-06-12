@@ -1,7 +1,10 @@
 package swing.blurHash;
 
 import java.util.Arrays;
-
+/**
+ * Odpowiedzialna za SRGB
+ * 
+ */
 class SRGB {
 
     private static final double[] SRGB2LINEAR = new double[256];
@@ -16,7 +19,11 @@ class SRGB {
             }
         }
     }
-
+/**
+ * Do liniowej
+ * @param value
+ * @return 
+ */
     static double toLinear(int value) {
         if (value < 0) {
             return SRGB2LINEAR[0];
@@ -26,7 +33,11 @@ class SRGB {
             return SRGB2LINEAR[value];
         }
     }
-
+/**
+ * Z liniowej
+ * @param value
+ * @return 
+ */
     static int fromLinear(double value) {
         int pos = Arrays.binarySearch(SRGB2LINEAR, value);
         if (pos < 0) {

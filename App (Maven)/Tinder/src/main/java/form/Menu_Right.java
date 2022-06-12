@@ -1,5 +1,7 @@
 package form;
-
+/**
+ * Odpowiada za prawą sronę menu
+ */
 public class Menu_Right extends javax.swing.JPanel {
 
     public Menu_Right() {

@@ -3,7 +3,10 @@ package form;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+/**
+ * Odpowiedzialna za grafike loading
+ *
+ */
 public class Loading extends javax.swing.JComponent {
 
     public Loading() {

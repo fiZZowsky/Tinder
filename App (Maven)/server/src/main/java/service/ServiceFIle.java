@@ -21,15 +21,25 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
-
+/**
+ * Odpowiedzialna za service file
+ * 
+ */
 public class ServiceFIle {
-
+/**
+ * Ustawia wartości związane z service file
+ */
     public ServiceFIle() {
         this.con = DatabaseConnection.getInstance().getConnection();
         this.fileReceivers = new HashMap<>();
         this.fileSenders = new HashMap<>();
     }
-
+/**
+ * Dodaje odbiorce wiadomości
+ * @param fileExtension
+ * @return data
+ * @throws SQLException 
+ */
     public Model_File addFileReceiver(String fileExtension) throws SQLException {
         Model_File data;
         PreparedStatement p = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -43,7 +53,12 @@ public class ServiceFIle {
         p.close();
         return data;
     }
-
+/**
+ * Aktualizuje blur hash
+ * @param fileID
+ * @param blurhash
+ * @throws SQLException 
+ */
     public void updateBlurHashDone(int fileID, String blurhash) throws SQLException {
         PreparedStatement p = con.prepareStatement(UPDATE_BLUR_HASH_DONE);
         p.setString(1, blurhash);
@@ -51,18 +66,32 @@ public class ServiceFIle {
         p.execute();
         p.close();
     }
-
+/**
+ * POtwierdza aktualizacje
+ * @param fileID
+ * @throws SQLException 
+ */
     public void updateDone(int fileID) throws SQLException {
         PreparedStatement p = con.prepareStatement(UPDATE_DONE);
         p.setInt(1, fileID);
         p.execute();
         p.close();
     }
-
+/**
+ * Inicjuje plik
+ * @param file
+ * @param message
+ * @throws IOException 
+ */
     public void initFile(Model_File file, Model_Send_Message message) throws IOException {
         fileReceivers.put(file.getFileID(), new Model_File_Receiver(message, toFileObject(file)));
     }
-
+/**
+ * Pobiera plik
+ * @param fileID
+ * @return
+ * @throws SQLException 
+ */
     public Model_File getFile(int fileID) throws SQLException {
         PreparedStatement p = con.prepareStatement(GET_FILE_EXTENSION);
         p.setInt(1, fileID);
@@ -74,7 +103,13 @@ public class ServiceFIle {
         p.close();
         return data;
     }
-
+/**
+ * Inicjuje plik
+ * @param fileID
+ * @return
+ * @throws IOException
+ * @throws SQLException 
+ */
     public synchronized Model_File initFile(int fileID) throws IOException, SQLException {
         Model_File file;
         if (!fileSenders.containsKey(fileID)) {
@@ -85,16 +120,31 @@ public class ServiceFIle {
         }
         return file;
     }
-
+/**
+ * PObiera dane pliku
+ * @param currentLength
+ * @param fileID
+ * @return
+ * @throws IOException
+ * @throws SQLException 
+ */
     public byte[] getFileData(long currentLength, int fileID) throws IOException, SQLException {
         initFile(fileID);
         return fileSenders.get(fileID).read(currentLength);
     }
-
+/**
+ * PObiera rozmiar pliku
+ * @param fileID
+ * @return 
+ */
     public long getFileSize(int fileID) {
         return fileSenders.get(fileID).getFileSize();
     }
-
+/**
+ * Odbiera plik
+ * @param dataPackage
+ * @throws IOException 
+ */
     public void receiveFile(Model_Package_Sender dataPackage) throws IOException {
         if (!dataPackage.isFinish()) {
             fileReceivers.get(dataPackage.getFileID()).writeFile(dataPackage.getData());
@@ -102,7 +152,13 @@ public class ServiceFIle {
             fileReceivers.get(dataPackage.getFileID()).close();
         }
     }
-
+/**
+ * Zamyka plik
+ * @param dataImage
+ * @return
+ * @throws IOException
+ * @throws SQLException 
+ */
     public Model_Send_Message closeFile(Model_Receive_Image dataImage) throws IOException, SQLException {
         Model_File_Receiver file = fileReceivers.get(dataImage.getFileID());
         if (file.getMessage().getMessageType() == MessageType.IMAGE.getValue()) {
@@ -118,7 +174,13 @@ public class ServiceFIle {
         //  Get message to send to target client when file receive finish
         return file.getMessage();
     }
-
+/**
+ * Konwertuje plik
+ * @param file
+ * @param dataImage
+ * @return
+ * @throws IOException 
+ */
     private String convertFileToBlurHash(File file, Model_Receive_Image dataImage) throws IOException {
         BufferedImage img = ImageIO.read(file);
         Dimension size = getAutoSize(new Dimension(img.getWidth(), img.getHeight()), new Dimension(200, 200));
@@ -132,7 +194,12 @@ public class ServiceFIle {
         dataImage.setImage(blurhash);
         return blurhash;
     }
-
+/**
+ * UStawia automatycznie rozmiar
+ * @param fromSize
+ * @param toSize
+ * @return 
+ */
     private Dimension getAutoSize(Dimension fromSize, Dimension toSize) {
         int w = toSize.width;
         int h = toSize.height;
@@ -145,7 +212,11 @@ public class ServiceFIle {
         int height = (int) (scale * ih);
         return new Dimension(width, height);
     }
-
+/**
+ * Zmienia w plik obiektu
+ * @param file
+ * @return 
+ */
     private File toFileObject(Model_File file) {
         return new File(PATH_FILE + file.getFileID() + file.getFileExtension());
     }

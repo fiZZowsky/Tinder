@@ -92,6 +92,7 @@ swing\ComponentResizer.class
 component\Chat_Body$1.class
 app\MessageType.class
 event\EventMessage.class
+form\P_Login$3.class
 main\Main$6.class
 service\Service$2.class
 swing\JIMSendTextPane$WarpLabelView.class

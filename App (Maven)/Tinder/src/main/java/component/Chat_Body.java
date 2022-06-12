@@ -11,20 +11,28 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
-
+/**
+ * Odpowiedzialna za ciało chatu
+ * 
+ */
 public class Chat_Body extends javax.swing.JPanel {
 
     public Chat_Body() {
         initComponents();
         init();
     }
-
+/**
+ * Inicjacja
+ */
     private void init() {
         body.setLayout(new MigLayout("fillx", "", "5[bottom]5"));
         sp.setVerticalScrollBar(new ScrollBar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
-
+/**
+ * Dodanie obiektu po lewej
+ * @param data 
+ */
     public void addItemLeft(Model_Receive_Message data) {
         if (data.getMessageType() == MessageType.TEXT) {
             Chat_Left item = new Chat_Left();
@@ -70,7 +78,10 @@ public class Chat_Body extends javax.swing.JPanel {
         body.repaint();
         body.revalidate();
     }
-
+/**
+ * Dodanie obiektu po prawej 
+ * @param data 
+ */
     public void addItemRight(Model_Send_Message data) {
         if (data.getMessageType() == MessageType.TEXT) {
             Chat_Right item = new Chat_Right();
@@ -104,7 +115,10 @@ public class Chat_Body extends javax.swing.JPanel {
         body.repaint();
         body.revalidate();
     }
-
+/**
+ * Dodanie danych
+ * @param date 
+ */
     public void addDate(String date) {
         Chat_Date item = new Chat_Date();
         item.setDate(date);
@@ -112,7 +126,9 @@ public class Chat_Body extends javax.swing.JPanel {
         body.repaint();
         body.revalidate();
     }
-
+/**
+ * Czyści chat
+ */
     public void clearChat() {
         body.removeAll();
         repaint();

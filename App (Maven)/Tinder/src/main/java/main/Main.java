@@ -12,9 +12,15 @@ import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
+/**
+ * Funkcja główna aplikacji
+ * 
+ */
 public class Main extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public Main() {
         initComponents();
         init();
@@ -232,6 +238,10 @@ public class Main extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_cmdMinimizeActionPerformed
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         //FlatArcIJTheme.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {

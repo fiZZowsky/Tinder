@@ -1,18 +1,35 @@
 package swing.blurHash;
-
+/**
+ * Odpowiedzialna za Util
+ * 
+ */
 class Util {
-
+/**
+ * Odpowiedzialna za wskazanie
+ * @param value
+ * @param exp
+ * @return 
+ */
     private static double signPow(double value, double exp) {
         return Math.copySign(Math.pow(Math.abs(value), exp), value);
     }
-
+/**
+ * Dekoduje DC
+ * @param str
+ * @param color 
+ */
     static void decodeDC(String str, double[] color) {
         int dcValue = Base83.decode(str);
         color[0] = SRGB.toLinear(dcValue >> 16);
         color[1] = SRGB.toLinear((dcValue >> 8) & 255);
         color[2] = SRGB.toLinear(dcValue & 255);
     }
-
+/**
+ * Dekoduje AC
+ * @param str
+ * @param realMaxValue
+ * @param color 
+ */
     static void decodeAC(String str, double realMaxValue, double[] color) {
         int acValue = Base83.decode(str);
         int quantR = acValue / (19 * 19);
@@ -22,21 +39,40 @@ class Util {
         color[1] = signPow((quantG - 9.0) / 9.0, 2.0) * realMaxValue;
         color[2] = signPow((quantB - 9.0) / 9.0, 2.0) * realMaxValue;
     }
-
+/**
+ * Koduje DC
+ * @param value
+ * @return 
+ */
     static long encodeDC(double[] value) {
         long r = SRGB.fromLinear(value[0]);
         long g = SRGB.fromLinear(value[1]);
         long b = SRGB.fromLinear(value[2]);
         return (r << 16) + (g << 8) + b;
     }
-
+/**
+ * Koduje AC
+ * @param value
+ * @param maximumValue
+ * @return 
+ */
     static long encodeAC(double[] value, double maximumValue) {
         double quantR = Math.floor(Math.max(0, Math.min(18, Math.floor(signPow(value[0] / maximumValue, 0.5) * 9 + 9.5))));
         double quantG = Math.floor(Math.max(0, Math.min(18, Math.floor(signPow(value[1] / maximumValue, 0.5) * 9 + 9.5))));
         double quantB = Math.floor(Math.max(0, Math.min(18, Math.floor(signPow(value[2] / maximumValue, 0.5) * 9 + 9.5))));
         return Math.round(quantR * 19 * 19 + quantG * 19 + quantB);
     }
-
+/**
+ * Aplikuje funkcje
+ * @param pixels
+ * @param width
+ * @param height
+ * @param normalisation
+ * @param i
+ * @param j
+ * @param factors
+ * @param index 
+ */
     static void applyBasisFunction(int[] pixels, int width, int height, double normalisation, int i, int j, double[][] factors, int index) {
         double r = 0, g = 0, b = 0;
         for (int x = 0; x < width; x++) {

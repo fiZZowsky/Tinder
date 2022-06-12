@@ -15,7 +15,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Odpowiedzialna za service
+ */
 public class Service {
 
     private static Service instance;
@@ -25,7 +27,10 @@ public class Service {
     private Model_User_Account user;
     private List<Model_File_Sender> fileSender;
     private List<Model_File_Receiver> fileReceiver;
-
+/**
+ * Pobiera instancje
+ * @return 
+ */
     public static Service getInstance() {
         if (instance == null) {
             instance = new Service();
@@ -37,7 +42,9 @@ public class Service {
         fileSender = new ArrayList<>();
         fileReceiver = new ArrayList<>();
     }
-
+/**
+ * Odpala server
+ */
     public void startServer() {
         try {
             client = IO.socket("http://" + IP + ":" + PORT_NUMBER);
@@ -81,7 +88,13 @@ public class Service {
             error(e);
         }
     }
-
+/**
+ * Dodaje plik
+ * @param file
+ * @param message
+ * @return
+ * @throws IOException 
+ */
     public Model_File_Sender addFile(File file, Model_Send_Message message) throws IOException {
         Model_File_Sender data = new Model_File_Sender(file, client, message);
         message.setFile(data);
@@ -92,7 +105,11 @@ public class Service {
         }
         return data;
     }
-
+/**
+ * Skonczenie wysylania pliku
+ * @param data
+ * @throws IOException 
+ */
     public void fileSendFinish(Model_File_Sender data) throws IOException {
         fileSender.remove(data);
         if (!fileSender.isEmpty()) {
@@ -100,14 +117,23 @@ public class Service {
             fileSender.get(0).initSend();
         }
     }
-
+/**
+ * Skonczenie odbierania pliku
+ * @param data
+ * @throws IOException 
+ */
     public void fileReceiveFinish(Model_File_Receiver data) throws IOException {
         fileReceiver.remove(data);
         if (!fileReceiver.isEmpty()) {
             fileReceiver.get(0).initReceive();
         }
     }
-
+/**
+ * Dodanie pliku odbierajacemu
+ * @param fileID
+ * @param event
+ * @throws IOException 
+ */
     public void addFileReceiver(int fileID, EventFileReceiver event) throws IOException {
         Model_File_Receiver data = new Model_File_Receiver(fileID, client, event);
         fileReceiver.add(data);
@@ -115,15 +141,24 @@ public class Service {
             data.initReceive();
         }
     }
-
+/**
+ * Pobranie klienta
+ * @return 
+ */
     public Socket getClient() {
         return client;
     }
-
+/**
+ * pobranie użytkownika
+ * @return 
+ */
     public Model_User_Account getUser() {
         return user;
     }
-
+/**
+ * Ustawienie użytkownika
+ * @param user 
+ */
     public void setUser(Model_User_Account user) {
         this.user = user;
     }

@@ -12,13 +12,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Odpowiedzialna za service user
+ * @author T460s i7
+ */
 public class ServiceUser {
-
+/**
+ * Ustawia service user
+ */
     public ServiceUser() {
         this.con = DatabaseConnection.getInstance().getConnection();
     }
-
+/**
+ * Rejestracja
+ * @param data
+ * @return 
+ */
     public Model_Message register(Model_Register data) {
         //  Check user exit
         Model_Message message = new Model_Message();
@@ -79,7 +88,12 @@ public class ServiceUser {
         }
         return message;
     }
-
+/**
+ * Logowanie
+ * @param login
+ * @return
+ * @throws SQLException 
+ */
     public Model_User_Account login(Model_Login login) throws SQLException {
         Model_User_Account data = null;
         PreparedStatement p = con.prepareStatement(LOGIN);
@@ -101,7 +115,12 @@ public class ServiceUser {
         p.close();
         return data;
     }
-
+/**
+ * Pobranie użytkownika
+ * @param exitUser
+ * @return
+ * @throws SQLException 
+ */
     public List<Model_User_Account> getUser(int exitUser) throws SQLException {
         List<Model_User_Account> list = new ArrayList<>();
         PreparedStatement p = con.prepareStatement(SELECT_USER_ACCOUNT);
@@ -122,7 +141,11 @@ public class ServiceUser {
         p.close();
         return list;
     }
-
+/**
+ * Sprawdzenie statusu użytkownika
+ * @param userID
+ * @return 
+ */
     private boolean checkUserStatus(int userID) {
         List<Model_Client> clients = Service.getInstance(null).getListClient();
         for (Model_Client c : clients) {

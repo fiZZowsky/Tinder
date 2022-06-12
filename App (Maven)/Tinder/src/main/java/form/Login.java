@@ -9,14 +9,19 @@ import model.Model_Register;
 import model.Model_User_Account;
 import service.Service;
 import io.socket.client.Ack;
-
+/**
+ * Odpwoiedzialna za login
+ * @author T460s i7
+ */
 public class Login extends javax.swing.JPanel {
 
     public Login() {
         initComponents();
         init();
     }
-
+/**
+ * Inicjalizuje login
+ */
     private void init() {
         PublicEvent.getInstance().addEventLogin(new EventLogin() {
             @Override

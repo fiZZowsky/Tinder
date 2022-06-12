@@ -4,21 +4,33 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.Icon;
 import javax.swing.JButton;
-
+/**
+ * Odpowiedzialna za przycisk menu
+ * @author T460s i7
+ */
 public class MenuButton extends JButton {
 
     public Icon getIconSimple() {
         return iconSimple;
     }
-
+/**
+ * Ustawienie ikony
+ * @param iconSimple 
+ */
     public void setIconSimple(Icon iconSimple) {
         this.iconSimple = iconSimple;
     }
-
+/**
+ * Pobranie ikony ustawionej
+ * @return 
+ */
     public Icon getIconSelected() {
         return iconSelected;
     }
-
+/**
+ * Ustawienie ikony
+ * @param iconSelected 
+ */
     public void setIconSelected(Icon iconSelected) {
         this.iconSelected = iconSelected;
     }

@@ -2,7 +2,10 @@ package form;
 
 import event.PublicEvent;
 import model.Model_Login;
-
+/**
+ * Odpowiada za logownie użytkownika
+ * @author T460s i7
+ */
 public class P_Login extends javax.swing.JPanel {
 
     public P_Login() {
@@ -100,15 +103,24 @@ public class P_Login extends javax.swing.JPanel {
                 .addGap(81, 81, 81))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Register action
+ * @param evt 
+ */
     private void cmdRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegisterActionPerformed
         PublicEvent.getInstance().getEventLogin().goRegister();
     }//GEN-LAST:event_cmdRegisterActionPerformed
-
+/**
+ * Login action
+ * @param evt 
+ */
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
         PublicEvent.getInstance().getEventLogin().login(new Model_Login(txtUser.getText(), String.valueOf(txtPass.getPassword())));
     }//GEN-LAST:event_cmdLoginActionPerformed
-
+/**
+ * User action
+ * @param evt 
+ */
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed

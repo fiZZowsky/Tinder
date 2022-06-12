@@ -1,12 +1,19 @@
 package swing.blurHash;
 
 import java.awt.image.BufferedImage;
-
+/**
+ * Odpowiedzialna za blure hash
+ * @author T460s i7
+ */
 public class BlurHash {
 
     private BlurHash() {
     }
-
+/**
+ * Kodowanie
+ * @param bufferedImage
+ * @return 
+ */
     public static String encode(BufferedImage bufferedImage) {
         return encode(bufferedImage, 4, 3);
     }
@@ -61,14 +68,29 @@ public class BlurHash {
         }
         return new String(hash);
     }
-
+/**
+ * Odkodowanie i wyswietlenie
+ * @param blurHash
+ * @param width
+ * @param height
+ * @param punch
+ * @param bufferedImageType
+ * @return 
+ */
     public static BufferedImage decodeAndDraw(String blurHash, int width, int height, double punch, int bufferedImageType) {
         int[] data = decode(blurHash, width, height, punch);
         BufferedImage image = new BufferedImage(width, height, bufferedImageType);
         image.setRGB(0, 0, width, height, data, 0, width);
         return image;
     }
-
+/**
+ * Dekodowanie
+ * @param blurHash
+ * @param width
+ * @param height
+ * @param punch
+ * @return 
+ */
     public static int[] decode(String blurHash, int width, int height, double punch) {
         int blurHashLength = blurHash.length();
         if (blurHashLength < 6) {

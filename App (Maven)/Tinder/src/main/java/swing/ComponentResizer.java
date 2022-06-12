@@ -163,23 +163,13 @@ public class ComponentResizer extends MouseAdapter {
         this.minimumSize = minimumSize;
     }
 
-    /**
-     * Remove listeners from the specified component
-     *
-     * @param component the component the listeners are removed from
-     */
     public void deregisterComponent(Component... components) {
         for (Component component : components) {
             component.removeMouseListener(this);
             component.removeMouseMotionListener(this);
         }
     }
-
-    /**
-     * Add the required listeners to the specified component
-     *
-     * @param component the component the listeners are added to
-     */
+    
     public void registerComponent(Component... components) {
         for (Component component : components) {
             component.addMouseListener(this);

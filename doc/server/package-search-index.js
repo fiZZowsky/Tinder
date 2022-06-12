@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"app"},{"l":"connection"},{"l":"main"},{"l":"model"},{"l":"service"},{"l":"swing.blurHash"}];updateSearchResults();

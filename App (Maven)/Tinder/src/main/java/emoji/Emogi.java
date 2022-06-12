@@ -3,7 +3,10 @@ package emoji;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
-
+/**
+ * Odpowiada za emogi
+ * @author T460s i7
+ */
 public class Emogi {
 
     private static Emogi instance;
