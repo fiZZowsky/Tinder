@@ -10,6 +10,7 @@
 ## Required to run
 - [*XAMPP*](https://www.apachefriends.org/pl/download.html)
 - [*NetBeans*](https://netbeans.apache.org/download/index.html)
+- JDK 18
 
 &nbsp;
 
